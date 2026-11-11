@@ -1,6 +1,5 @@
 /* Prevent horizontal scrolling on all pages */
-body,
-html {
+.classic-home-root {
   margin: 0;
   padding: 0;
   overflow-x: hidden;

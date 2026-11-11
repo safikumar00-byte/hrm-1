@@ -1,11 +1,11 @@
-:root {
+.timesheet-table, .timesheet-container, .timesheet-header, .timesheet-row {
   --bg-light: #f9fafb;
   --bg-medium: #f3f4f6;
   --border-color: #e5e7eb;
   --text-dark: #1f2937;
   --text-muted: #6b7280;
-  --primary: #3b82f6;
-  --primary-dark: #1d4ed8;
+  --ts-primary: #3b82f6;
+  --ts-primary-dark: #1d4ed8;
   --success: #10b981;
   --success-dark: #059669;
   --danger: #ef4444;
@@ -76,12 +76,12 @@
 
 /* ==== Clickable ID (if needed separately) ==== */
 .clickable-id {
-  color: var(--primary);
+  color: var(--ts-primary);
   text-decoration: underline;
   cursor: pointer;
 }
 .clickable-id:hover {
-  color: var(--primary-dark);
+  color: var(--ts-primary-dark);
 }
 
 /* ==== Hours Color Highlights ==== */

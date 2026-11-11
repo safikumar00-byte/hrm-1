@@ -109,11 +109,40 @@ import TaxConfig from './pages/PayRollall/Admin/TaxConfig';
 import FinanceReports from './pages/PayRollall/Finance/FinanceReports';
 import ReimbursmentApprovals from './pages/PayRollall/Finance/ReimbursmentApprovals';
 
+// Modern V2 Theme & Shadcn Duplicate Screens
+import ModernLayout from './v2/layouts/ModernLayout';
+import ModernHome from './v2/pages/ModernHome';
+import ModernEmployees from './v2/pages/ModernEmployees';
+import ModernAttendance from './v2/pages/ModernAttendance';
+import ModernLeaves from './v2/pages/ModernLeaves';
+import ModernPayroll from './v2/pages/ModernPayroll';
+import ModernProfile from './v2/pages/ModernProfile';
+import ModernLogin from './v2/pages/ModernLogin';
+
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<Login />} />
+        <Route path="/v2/login" element={<ModernLogin />} />
+
+        {/* Modern V2 Duplicate Screens with Shadcn Theme */}
+        <Route
+          path="/v2"
+          element={
+            <ProtectedRoute>
+              <ModernLayout />
+            </ProtectedRoute>
+          }
+        >
+          <Route index element={<Navigate to="/v2/home" replace />} />
+          <Route path="home" element={<ModernHome />} />
+          <Route path="employees" element={<ModernEmployees />} />
+          <Route path="attendance" element={<ModernAttendance />} />
+          <Route path="leaves" element={<ModernLeaves />} />
+          <Route path="payroll" element={<ModernPayroll />} />
+          <Route path="profile" element={<ModernProfile />} />
+        </Route>
 
         <Route
           path="/onboarding"

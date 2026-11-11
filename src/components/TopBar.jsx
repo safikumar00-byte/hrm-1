@@ -157,6 +157,30 @@ const TopBar = () => {
       </div>
 
       <div className="topbar-right" ref={dropdownRef}>
+        <button
+          type="button"
+          onClick={() => navigate('/v2/home')}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px',
+            padding: '7px 14px',
+            borderRadius: '8px',
+            backgroundColor: '#60F61B',
+            color: '#21093D',
+            fontWeight: 'bold',
+            fontSize: '12px',
+            border: 'none',
+            cursor: 'pointer',
+            boxShadow: '0 2px 10px rgba(96, 246, 27, 0.35)',
+            transition: 'transform 0.15s ease',
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.03)')}
+          onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+        >
+          <span>✨ Modern Theme (v2)</span>
+        </button>
+
         <div className="topbar-time flex flex-col items-end">
           <p className="text-lg">{time.toDateString()}</p>
           <p>{time.toLocaleTimeString()}</p>

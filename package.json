@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "mock-server": "node mock-server.js",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
@@ -23,7 +24,6 @@
     "@tanstack/react-table": "^8.21.3",
     "axios": "^1.9.0",
     "chart.js": "^4.4.9",
-    "cvm-hrms": "file:",
     "d3": "^7.9.0",
     "date-fns": "^4.1.0",
     "exceljs": "^4.4.0",
