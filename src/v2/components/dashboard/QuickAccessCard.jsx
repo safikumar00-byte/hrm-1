@@ -37,23 +37,20 @@ export function QuickAccessCard({
           if (to) navigate(to);
         }
       }}
-      className="p-4 sm:p-5 transition-all cursor-pointer group rounded-[var(--radius)] relative focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 flex flex-col justify-between"
+      className="p-4 sm:p-5 border border-border bg-card hover:bg-secondary/40 transition-all hover:border-primary/50 hover:shadow-sm cursor-pointer group rounded-[var(--radius)] relative focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 flex flex-col justify-between"
     >
       <div>
         <div className="flex items-start justify-between gap-2 mb-3">
           {/* Themed Icon Container */}
-          {/* <div
+          <div
             className={`h-10 w-10 rounded-xl border flex items-center justify-center shrink-0 transition-transform group-hover:scale-105 duration-200 ${getIconContainerStyle()}`}
           >
             <Icon className="w-5 h-5 stroke-[2.2]" />
-          </div> */}
-          <h3 className="text-sm font-bold text-card-foreground group-hover:text-primary transition-colors leading-tight mb-1">
-            {title}
-          </h3>
+          </div>
 
           <div className="flex items-center gap-1.5">
             {badge && (
-              <Badge variant="brand" className="text-[10px] py-0 text-nowrap  px-2 font-semibold">
+              <Badge variant="brand" className="text-[10px] py-0 px-2 font-semibold">
                 {badge}
               </Badge>
             )}
@@ -64,7 +61,9 @@ export function QuickAccessCard({
         </div>
 
         {/* Title & Description */}
-
+        <h3 className="text-sm font-bold text-card-foreground group-hover:text-primary transition-colors leading-tight mb-1">
+          {title}
+        </h3>
         <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2 m-0">
           {description}
         </p>

@@ -101,7 +101,10 @@ function Home() {
           </div>
 
           <div className="quick-links">
-            <div className="quick-links-title"></div>
+            <div className="quick-links-title">
+              <h3 style={{ fontSize: '18px', fontWeight: '800', color: '#21093D', margin: '0 0 4px 0' }}>Quick Access Modules</h3>
+              <p style={{ fontSize: '12px', color: '#71677D', margin: 0 }}>Frequently used portals and employee tools</p>
+            </div>
             <div className="quick-links-grid">
               
               {renderCard({

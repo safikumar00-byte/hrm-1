@@ -1,27 +1,26 @@
 .summary_card {
   width: 100%;
-  height: stretch;
-  min-width: 300px;
+  height: 100%;
+  min-width: 280px;
   display: flex;
+  flex-direction: column;
   align-items: stretch;
-  justify-content: stretch;
-  /* background: linear-gradient(125.41deg, #21093D -2.21%, #5818A3 101.21%); */
   color: #21093D;
+  box-sizing: border-box;
 }
 
 .statussummary_wrapper {
-  height: stretch;
+  height: 100%;
+  min-height: 260px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border: 1px solid #e0e0e0;
-  /* color: #d4d2d6; */
-  border-radius: 10px;
-  padding: 16px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-  background: linear-gradient(125.41deg, #21093D -2.21%, #5818A3 101.21%);
-  border-top: 4px solid #0ab031;
-  /* height: 100%; */
+  border: 1px solid #E5E0EA;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px -2px rgba(33, 9, 61, 0.08);
+  background: linear-gradient(125.41deg, #21093D -2.21%, #382451 101.21%);
+  border-top: 4px solid #60F61B;
   box-sizing: border-box;
   color: white;
 }
