@@ -3,7 +3,7 @@ import { cn } from '../../lib/utils';
 
 const TabsContext = createContext({
   activeTab: '',
-  setActiveTab: () => {},
+  setActiveTab: () => { },
 });
 
 export function Tabs({ defaultValue, value, onValueChange, className, children }) {
@@ -45,8 +45,8 @@ export function TabsTrigger({ value, className, children, ...props }) {
       className={cn(
         'inline-flex items-center justify-center whitespace-nowrap rounded-[calc(var(--radius)-4px)] px-3.5 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 cursor-pointer',
         isActive
-          ? 'bg-card text-foreground shadow-xs font-semibold'
-          : 'text-muted-foreground hover:text-foreground hover:bg-card/50',
+          ? 'bg-gradient-to-b from-white to-gray-100 dark:from-gray-800 dark:to-gray-900 text-foreground shadow-xs font-semibold'
+          : 'text-muted-foreground hover:text-foreground hover:bg-gradient-to-b from-white to-gray-100 dark:from-gray-800 dark:to-gray-900/50',
         className
       )}
       {...props}

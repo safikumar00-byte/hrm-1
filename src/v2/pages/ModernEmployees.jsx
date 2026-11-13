@@ -97,7 +97,7 @@ export default function ModernEmployees() {
         </div>
         <Button
           onClick={() => setDialogOpen(true)}
-          className="gap-2 bg-primary text-primary-foreground font-semibold"
+          className="gap-2 bg-primary text-primary-foreground font-bold hover:brightness-105 active:scale-[0.98]"
         >
           <UserPlus className="w-4 h-4" />
           <span>Add Employee</span>

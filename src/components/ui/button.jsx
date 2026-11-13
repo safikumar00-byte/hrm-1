@@ -19,19 +19,19 @@ export const Button = React.forwardRef(
 
     const variants = {
       default:
-        'bg-primary text-primary-foreground font-semibold shadow-xs hover:opacity-90 active:scale-[0.98] border-0',
+        'bg-primary text-primary-foreground font-bold shadow-xs hover:brightness-105 active:scale-[0.98] border-0 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
       brand:
-        'bg-[#21093D] text-[#60F61B] hover:bg-[#2C1646] border border-[#60F61B]/40 font-semibold shadow-xs active:scale-[0.98]',
+        'bg-[#21093D] text-[#60F61B] hover:brightness-110 border border-[#60F61B]/40 font-semibold shadow-xs active:scale-[0.98] dark:bg-secondary dark:text-primary dark:border-primary/40',
       secondary:
-        'bg-secondary text-secondary-foreground hover:bg-secondary/80 border-0',
+        'bg-secondary text-secondary-foreground hover:bg-secondary/80 border border-border/60 font-medium',
       outline:
-        'border border-border bg-card text-foreground hover:bg-secondary hover:text-foreground',
+        'border border-border bg-gradient-to-b from-white to-gray-100 dark:from-gray-800 dark:to-gray-900 text-foreground hover:bg-secondary hover:text-foreground font-medium shadow-2xs',
       ghost:
-        'bg-transparent text-foreground hover:bg-secondary hover:text-foreground border-0',
+        'bg-transparent text-foreground hover:bg-secondary hover:text-foreground border-0 font-medium',
       destructive:
-        'bg-destructive text-destructive-foreground hover:opacity-90 shadow-xs border-0',
+        'bg-destructive text-destructive-foreground hover:opacity-90 shadow-xs border-0 font-semibold',
       link:
-        'text-primary underline-offset-4 hover:underline p-0 h-auto border-0 bg-transparent',
+        'text-primary underline-offset-4 hover:underline p-0 h-auto border-0 bg-transparent font-medium',
     };
 
     const sizes = {

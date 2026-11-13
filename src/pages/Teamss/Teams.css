@@ -1,15 +1,5 @@
-* {
+.teams-container {
   box-sizing: border-box;
-}
-
-body,
-html,
-#root {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #2c3e50;
 }
 
 /* Container */

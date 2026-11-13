@@ -12,7 +12,7 @@
   --foreground: #21093D;
 
   /* Card */
-  --card: #FFFFFF;
+  --card: linear-gradient(90deg, #fff, #e9ffe0);
   --card-foreground: #21093D;
 
   /* Popover */
@@ -213,7 +213,10 @@
 }
 
 @layer base {
-  *, ::after, ::before {
+
+  *,
+  ::after,
+  ::before {
     box-sizing: border-box;
     border-color: var(--border);
   }
@@ -225,4 +228,47 @@
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
   }
+}
+
+/* =========================================================================
+   Slim 6px Cross-Browser Scrollbars (Brand Design System)
+   ========================================================================= */
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #D6D0DF transparent;
+}
+
+.dark * {
+  scrollbar-color: #49345E transparent;
+}
+
+/* Chromium, Brave, Edge and Safari */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D6D0DF;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #A99CB9;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #49345E;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #78658D;
 }

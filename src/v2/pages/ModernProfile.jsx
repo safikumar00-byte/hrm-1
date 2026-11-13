@@ -45,23 +45,23 @@ export default function ModernProfile() {
       .then((data) => {
         if (data && data.fullName) setProfile((prev) => ({ ...prev, ...data }));
       })
-      .catch(() => {});
+      .catch(() => { });
 
     fetch('/api/emergencycontacts')
       .then((res) => res.json())
       .then((data) => setEmergencyContacts(Array.isArray(data) ? data : []))
-      .catch(() => {});
+      .catch(() => { });
 
     fetch('/api/assets/my')
       .then((res) => res.json())
       .then((data) => setAssets(Array.isArray(data) ? data : []))
-      .catch(() => {});
+      .catch(() => { });
   }, []);
 
   return (
     <div className="space-y-6 animate-in fade-in-50 duration-200">
       {/* Profile Identity Hero Card */}
-      <Card className="border-2 border-primary/20 bg-card overflow-hidden">
+      <Card className="border-2 border-primary/20 bg-gradient-to-b from-white to-gray-100 dark:from-gray-800 dark:to-gray-900 overflow-hidden">
         <div className="h-28 bg-gradient-to-r from-[#21093D] via-[#382451] to-[#21093D] relative p-6">
           <Badge variant="brand" className="absolute top-4 right-4">
             Active Employee
@@ -184,8 +184,8 @@ export default function ModernProfile() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {assets.map((ast) => (
               <Card key={ast.id} className="p-4 flex items-start gap-4">
-                <div className="h-10 w-10 rounded-lg bg-accent flex items-center justify-center text-primary-foreground font-bold shrink-0">
-                  <Laptop className="w-5 h-5 text-[#21093D]" />
+                <div className="h-10 w-10 rounded-lg bg-accent flex items-center justify-center text-accent-foreground font-bold shrink-0">
+                  <Laptop className="w-5 h-5 text-accent-foreground" />
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between">

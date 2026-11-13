@@ -15,7 +15,7 @@ export function EventsCalendarCard() {
   }, []);
 
   return (
-    <Card className="shadow-xs">
+    <Card className="shadow-xs h-full flex flex-col justify-between">
       <CardHeader className="flex flex-row items-center justify-between pb-3">
         <div className="flex items-center gap-2">
           <div className="h-7 w-7 rounded-md bg-secondary text-secondary-foreground flex items-center justify-center">
@@ -28,49 +28,49 @@ export function EventsCalendarCard() {
         </Badge>
       </CardHeader>
 
-      <CardContent className="space-y-3.5">
+      <CardContent className="space-y-3.5 flex-1">
         {/* Birthday card */}
-        <div className="flex items-center gap-3 p-3.5 rounded-[var(--radius)] border border-[#60F61B]/40 bg-[#E9FFE0]/60 dark:bg-[#354B2B]/40 text-foreground transition-all">
-          <div className="h-9 w-9 rounded-full bg-[#60F61B] text-[#21093D] flex items-center justify-center font-bold shrink-0 shadow-2xs">
+        <div className="flex items-center gap-3 p-3.5 rounded-[var(--radius)] border border-primary/40 bg-accent text-accent-foreground transition-all">
+          <div className="h-9 w-9 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold shrink-0 shadow-2xs">
             <Gift className="w-4 h-4" />
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-xs font-bold text-foreground">Birthday Celebration! 🎂</p>
-            <p className="text-xs text-muted-foreground truncate">
+            <p className="text-xs font-bold text-foreground leading-tight">Birthday Celebration! 🎂</p>
+            <p className="text-xs text-muted-foreground truncate mt-0.5">
               Admin User & Sarah Johnson celebrate today
             </p>
           </div>
           <Button
             size="sm"
             variant="brand"
-            className="text-xs h-7 px-2.5 shrink-0"
+            className="text-xs h-7 px-3 shrink-0 font-bold"
           >
             Send Wish
           </Button>
         </div>
 
         {/* Scheduled events */}
-        {events.map((ev) => (
-          <div
-            key={ev.id}
-            className="flex items-center justify-between p-3 rounded-[var(--radius)] border border-border hover:bg-secondary/40 transition-all hover:border-border"
-          >
-            <div className="flex items-center gap-3">
-              <div className="h-8 w-8 rounded-md bg-secondary flex items-center justify-center text-muted-foreground shrink-0">
-                <Calendar className="w-4 h-4" />
+        <div className="space-y-2">
+          {events.map((ev) => (
+            <div
+              key={ev.id}
+              className="flex items-center justify-between p-3 rounded-[var(--radius)] border border-border hover:bg-secondary/40 transition-all hover:border-border/80"
+            >
+              <div className="flex items-center gap-3">
+                <div className="h-8 w-8 rounded-md bg-secondary flex items-center justify-center text-muted-foreground shrink-0">
+                  <Calendar className="w-4 h-4 text-primary" />
+                </div>
+                <div>
+                  <p className="text-xs font-semibold text-card-foreground leading-tight">{ev.title}</p>
+                  <p className="text-[11px] text-muted-foreground mt-0.5">{ev.date} • {ev.time}</p>
+                </div>
               </div>
-              <div>
-                <h4 className="text-sm font-semibold text-foreground">{ev.title}</h4>
-                <p className="text-xs text-muted-foreground">
-                  {ev.eventDate} • {ev.eventTime}
-                </p>
-              </div>
+              <Badge variant="neutral" className="text-[10px]">
+                {ev.type}
+              </Badge>
             </div>
-            <Badge variant="secondary" className="text-[10px] shrink-0">
-              Townhall
-            </Badge>
-          </div>
-        ))}
+          ))}
+        </div>
       </CardContent>
     </Card>
   );

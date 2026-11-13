@@ -20,7 +20,7 @@ export default function ModernLogin() {
   const [email, setEmail] = useState('admin@cvm.com');
   const [password, setPassword] = useState('admin123');
   const [loading, setLoading] = useState(false);
-  const { theme, toggleTheme, isDark } = useTheme();
+  const { toggleTheme, isDark } = useTheme();
   const navigate = useNavigate();
 
   const handleQuickLogin = (roleName = 'Admin') => {
@@ -87,7 +87,7 @@ export default function ModernLogin() {
       } else {
         alert('Invalid credentials');
       }
-    } catch (err) {
+    } catch (_err) {
       alert('Login failed');
     } finally {
       setLoading(false);
@@ -128,17 +128,17 @@ export default function ModernLogin() {
             onClick={toggleTheme}
             className="h-9 w-9"
           >
-            {isDark ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-slate-700" />}
+            {isDark ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-foreground" />}
           </Button>
         </div>
       </header>
 
       {/* Main Centered Login Card */}
       <div className="z-10 w-full max-w-md mx-auto my-auto py-8">
-        <Card className="border-2 border-border shadow-lg">
+        <Card className="border border-border shadow-lg">
           <CardHeader className="text-center pb-4">
-            <div className="mx-auto w-12 h-12 rounded-xl bg-accent flex items-center justify-center text-primary-foreground mb-2">
-              <ShieldCheck className="w-6 h-6 text-[#21093D]" />
+            <div className="mx-auto w-12 h-12 rounded-xl bg-accent flex items-center justify-center text-accent-foreground mb-2">
+              <ShieldCheck className="w-6 h-6 text-accent-foreground" />
             </div>
             <CardTitle className="text-2xl font-bold">Sign In to HRMS</CardTitle>
             <CardDescription>

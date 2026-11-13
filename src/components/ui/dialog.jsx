@@ -13,7 +13,7 @@ export function Dialog({ open, onOpenChange, children }) {
         onClick={() => onOpenChange(false)}
       />
       {/* Content */}
-      <div className="relative z-50 w-full max-w-lg rounded-[calc(var(--radius)+4px)] border border-border bg-card p-6 shadow-xl animate-in zoom-in-95 duration-150">
+      <div className="relative z-50 w-full max-w-lg rounded-[calc(var(--radius)+4px)] border border-border bg-gradient-to-b from-white to-gray-100 dark:from-gray-800 dark:to-gray-900 p-6 shadow-xl animate-in zoom-in-95 duration-150">
         <button
           type="button"
           onClick={() => onOpenChange(false)}

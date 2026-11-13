@@ -61,17 +61,17 @@ export default function ModernAttendance() {
         <Card className="p-4 border-l-4 border-primary">
           <div className="text-xs font-semibold text-muted-foreground">Monthly Attendance Rate</div>
           <div className="text-2xl font-bold text-foreground mt-1">98.2%</div>
-          <p className="text-xs text-emerald-600 mt-1 font-medium">0 unexcused absences</p>
+          <p className="text-xs text-emerald-600 dark:text-emerald-400 mt-1 font-medium">0 unexcused absences</p>
         </Card>
-        <Card className="p-4 border-l-4 border-[#21093D] dark:border-purple-400">
+        <Card className="p-4 border-l-4 border-foreground/60 dark:border-primary/60">
           <div className="text-xs font-semibold text-muted-foreground">Average Daily Hours</div>
           <div className="text-2xl font-bold text-foreground mt-1">8.4 hrs</div>
           <p className="text-xs text-muted-foreground mt-1">Target: 8.0 hrs / day</p>
         </Card>
-        <Card className="p-4 border-l-4 border-emerald-500">
+        <Card className="p-4 border-l-4 border-emerald-500 dark:border-emerald-400">
           <div className="text-xs font-semibold text-muted-foreground">Approved Timesheets</div>
           <div className="text-2xl font-bold text-foreground mt-1">100%</div>
-          <p className="text-xs text-emerald-600 mt-1 font-medium">All cycles verified</p>
+          <p className="text-xs text-emerald-600 dark:text-emerald-400 mt-1 font-medium">All cycles verified</p>
         </Card>
       </div>
 

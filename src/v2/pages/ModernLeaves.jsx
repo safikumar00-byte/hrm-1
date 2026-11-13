@@ -96,59 +96,59 @@ export default function ModernLeaves() {
         </div>
         <Button
           onClick={() => setDialogOpen(true)}
-          className="gap-2 bg-primary text-primary-foreground font-semibold"
+          className="gap-2 bg-primary text-primary-foreground font-bold hover:brightness-105 active:scale-[0.98]"
         >
-          <Plus className="w-4 h-4" />
+          <Plus className="w-4 h-4 stroke-[2.5]" />
           <span>Apply For Leave</span>
         </Button>
       </div>
 
       {/* 4 Leave Balance Cards with Theme Styling */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <Card className="border-t-4 border-t-primary">
+        <Card className="border-t-4 border-t-primary shadow-xs">
           <CardHeader className="pb-1">
             <CardTitle className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
               Total Available
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold text-foreground">{leavesData.available} Days</div>
+            <div className="text-3xl font-bold text-card-foreground">{leavesData.available} Days</div>
             <p className="text-xs text-muted-foreground mt-1">Remaining in 2026</p>
           </CardContent>
         </Card>
 
-        <Card className="border-t-4 border-t-[#21093D] dark:border-t-purple-400">
+        <Card className="border-t-4 border-t-chart-3 dark:border-t-purple-400 shadow-xs">
           <CardHeader className="pb-1">
             <CardTitle className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
               Casual Leaves
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold text-foreground">{leavesData.casual} Days</div>
+            <div className="text-3xl font-bold text-card-foreground">{leavesData.casual} Days</div>
             <p className="text-xs text-muted-foreground mt-1">Available for planned personal events</p>
           </CardContent>
         </Card>
 
-        <Card className="border-t-4 border-t-emerald-500">
+        <Card className="border-t-4 border-t-emerald-500 shadow-xs">
           <CardHeader className="pb-1">
             <CardTitle className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
               Medical / Sick Leaves
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold text-foreground">{leavesData.sick} Days</div>
+            <div className="text-3xl font-bold text-card-foreground">{leavesData.sick} Days</div>
             <p className="text-xs text-muted-foreground mt-1">Available for medical recovery</p>
           </CardContent>
         </Card>
 
-        <Card className="border-t-4 border-t-amber-500">
+        <Card className="border-t-4 border-t-amber-500 shadow-xs">
           <CardHeader className="pb-1">
             <CardTitle className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
               Leaves Consumed
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold text-foreground">{leavesData.taken} Days</div>
+            <div className="text-3xl font-bold text-card-foreground">{leavesData.taken} Days</div>
             <p className="text-xs text-muted-foreground mt-1">Total approved year-to-date</p>
           </CardContent>
         </Card>

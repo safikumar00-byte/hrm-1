@@ -61,18 +61,18 @@ export default function ModernPayroll() {
             Access itemized salary slips, tax regime configurations, and reimbursement filings.
           </p>
         </div>
-        <Button className="gap-2 bg-primary text-primary-foreground font-semibold">
-          <Download className="w-4 h-4" />
+        <Button className="gap-2 bg-primary text-primary-foreground font-bold hover:brightness-105 active:scale-[0.98]">
+          <Download className="w-4 h-4 stroke-[2.5]" />
           <span>Download Latest Payslip (PDF)</span>
         </Button>
       </div>
 
       {/* 3 Overview Metric Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <Card className="border-l-4 border-primary">
+        <Card className="border-l-4 border-primary shadow-xs">
           <div className="p-4">
             <span className="text-xs font-semibold text-muted-foreground uppercase">October Net Payout</span>
-            <div className="text-3xl font-bold text-foreground mt-1">$13,500.00</div>
+            <div className="text-3xl font-bold text-card-foreground mt-1">$13,500.00</div>
             <p className="text-xs text-muted-foreground mt-1 flex items-center gap-1">
               <CheckCircle className="w-3.5 h-3.5 text-primary" />
               <span>Transferred to Chase Account •••• 4892</span>
@@ -80,19 +80,19 @@ export default function ModernPayroll() {
           </div>
         </Card>
 
-        <Card className="border-l-4 border-[#21093D] dark:border-purple-400">
+        <Card className="border-l-4 border-chart-3 dark:border-purple-400 shadow-xs">
           <div className="p-4">
             <span className="text-xs font-semibold text-muted-foreground uppercase">Annual CTC Package</span>
-            <div className="text-3xl font-bold text-foreground mt-1">$180,000.00</div>
+            <div className="text-3xl font-bold text-card-foreground mt-1">$180,000.00</div>
             <p className="text-xs text-muted-foreground mt-1">Tier: Senior Leadership Structure</p>
           </div>
         </Card>
 
-        <Card className="border-l-4 border-emerald-500">
+        <Card className="border-l-4 border-emerald-500 shadow-xs">
           <div className="p-4">
             <span className="text-xs font-semibold text-muted-foreground uppercase">TDS Withheld (YTD)</span>
-            <div className="text-3xl font-bold text-foreground mt-1">$5,500.00</div>
-            <p className="text-xs text-emerald-600 mt-1 font-medium">100% Tax Compliant</p>
+            <div className="text-3xl font-bold text-card-foreground mt-1">$5,500.00</div>
+            <p className="text-xs text-emerald-600 dark:text-emerald-400 mt-1 font-medium">100% Tax Compliant</p>
           </div>
         </Card>
       </div>
