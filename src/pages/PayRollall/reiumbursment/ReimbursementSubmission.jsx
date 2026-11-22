@@ -32,9 +32,11 @@ const ReimbursementSubmission = () => {
           getAllComponents(token)
         ]);
 
-        const merged = eligibilitiesData.map((elig) => {
-          const component = componentsData.find(
-            (c) => c.component_id === elig.component_id
+        const eligList = Array.isArray(eligibilitiesData) ? eligibilitiesData : [];
+        const compList = Array.isArray(componentsData) ? componentsData : [];
+        const merged = eligList.map((elig) => {
+          const component = compList.find(
+            (c) => c && c.component_id === elig.component_id
           );
           return {
             ...elig,
@@ -133,19 +135,27 @@ const ReimbursementSubmission = () => {
                 <td>{elig.component_name}</td>
                 <td>
                   ₹
-                  {elig.annual_override !== null
+                  {typeof elig.annual_override === 'number'
                     ? elig.annual_override.toLocaleString()
-                    : elig.default_annual_limit !== null
-                      ? elig.default_annual_limit.toLocaleString()
-                      : '–'}
+                    : typeof elig.default_annual_limit === 'number'
+                    ? elig.default_annual_limit.toLocaleString()
+                    : elig.annual_override != null
+                    ? Number(elig.annual_override).toLocaleString()
+                    : elig.default_annual_limit != null
+                    ? Number(elig.default_annual_limit).toLocaleString()
+                    : '–'}
                 </td>
                 <td>
                   ₹
-                  {elig.monthly_override !== null
+                  {typeof elig.monthly_override === 'number'
                     ? elig.monthly_override.toLocaleString()
-                    : elig.default_monthly_limit !== null
-                      ? elig.default_monthly_limit.toLocaleString()
-                      : '–'}
+                    : typeof elig.default_monthly_limit === 'number'
+                    ? elig.default_monthly_limit.toLocaleString()
+                    : elig.monthly_override != null
+                    ? Number(elig.monthly_override).toLocaleString()
+                    : elig.default_monthly_limit != null
+                    ? Number(elig.default_monthly_limit).toLocaleString()
+                    : '–'}
                 </td>
                 <td>
                   <input

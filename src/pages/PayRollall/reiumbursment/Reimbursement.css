@@ -2,41 +2,60 @@
 .reimburse-container {
     background: #fff;
     border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    border: 1px solid #E5E0EA;
+    box-shadow: 0 4px 12px -2px rgba(33, 9, 61, 0.08);
     margin: 20px;
   }
   
   .reimburse-container h2 {
     font-size: 22px;
-    color: #003c58;
+    color: #21093D;
     margin-bottom: 20px;
+    font-weight: 700;
   }
   
   .reimburse-form label {
     display: block;
     margin-bottom: 15px;
     font-size: 14px;
+    font-weight: 500;
+    color: #71677D;
   }
   
   .reimburse-form input,
   .reimburse-form select,
   .reimburse-form textarea {
     width: 100%;
-    padding: 8px 10px;
-    font-size: 15px;
+    padding: 8px 12px;
+    font-size: 14px;
     margin-top: 5px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
+    border-radius: 8px;
+    border: 1px solid #E5E0EA;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .reimburse-form input:focus,
+  .reimburse-form select:focus,
+  .reimburse-form textarea:focus {
+    border-color: #60F61B;
+    box-shadow: 0 0 0 3px rgba(96, 246, 27, 0.2);
   }
   
   .submit-btn {
     padding: 10px 20px;
-    background: #007acc;
+    background: #21093D;
     color: #fff;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     cursor: pointer;
-    font-weight: bold;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background 0.2s ease;
+  }
+
+  .submit-btn:hover {
+    background: #381661;
   }
   
   .success-msg {
@@ -56,11 +75,22 @@
     border-collapse: collapse;
   }
   
-  .history-table th,
-  .history-table td {
-    padding: 12px;
-    border-bottom: 1px solid #ddd;
+  .history-table th {
+    background-color: #F8FAFC;
+    color: #6B7280;
+    font-weight: 600;
+    padding: 12px 16px;
+    border-bottom: 1px solid #E5E0EA;
     text-align: left;
+    font-size: 13px;
+  }
+
+  .history-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #E5E0EA;
+    text-align: left;
+    color: #21093D;
+    font-size: 14px;
   }
   
   .status.approved {
@@ -143,16 +173,20 @@
     font-size: 0.95rem;
   }
   
-  .reimburse-table th,
-  .reimburse-table td {
-    border: 1px solid #ccc;
-    padding: 10px;
-    text-align: center;
-  }
-  
   .reimburse-table th {
-    background-color: #f0f0f0;
+    background-color: #F8FAFC;
+    color: #6B7280;
     font-weight: 600;
+    border: 1px solid #E5E0EA;
+    padding: 12px;
+    font-size: 13px;
+  }
+
+  .reimburse-table td {
+    border: 1px solid #E5E0EA;
+    padding: 12px;
+    text-align: center;
+    color: #21093D;
   }
   
   .reimburse-table tr:nth-child(even) {
@@ -160,18 +194,19 @@
   }
   
   .submit-claim-btn {
-    background-color: #2980b9;
+    background-color: #21093D;
     color: #fff;
     border: none;
-    padding: 6px 14px;
-    font-size: 14px;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 600;
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: 8px;
     transition: background 0.2s ease-in-out;
   }
   
   .submit-claim-btn:hover {
-    background-color: #1f6391;
+    background-color: #381661;
   }
   
   .submit-claim-btn:disabled {

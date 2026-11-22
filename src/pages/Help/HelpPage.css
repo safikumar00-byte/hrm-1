@@ -1,16 +1,14 @@
 /* Container - full width, no card style */
 
 .help-page-container {
-    width: 100%;
-    padding: 24px 40px;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    color: #222;
-    background: #f9f9f9;
-    min-height: 100vh;
-    box-sizing: border-box;
-    margin-top: 3%;
-    margin-left: 3%;
-  }
+  width: 100%;
+  padding: 24px 40px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #222;
+  background: #f9f9f9;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
   
   /* Header */
   

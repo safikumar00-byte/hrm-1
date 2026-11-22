@@ -2,7 +2,8 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   border: 1px solid #ddd;
   border-radius: 8px;
-  margin-left: -1%;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .onboarding-progress-page h2 {

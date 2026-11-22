@@ -13,14 +13,14 @@ const SelfServiceNavbar = () => {
     <div className="layouts-container">
       <nav className="layouts-navbar">
         <NavLink
-          to="/profile/profile"
+          to="/v1/profile/profile"
           className={({ isActive }) => `layouts-tab ${isActive ? 'active' : ''}`}
         >
           <User size={16} /> Profile
         </NavLink>
 
         <NavLink
-          to="/profile/assets"
+          to="/v1/profile/assets"
           className={({ isActive }) => `layouts-tab ${isActive ? 'active' : ''}`}
         >
           <Wrench size={16} /> Assets
@@ -28,7 +28,7 @@ const SelfServiceNavbar = () => {
 
         {canViewHRRequests && (
           <NavLink
-            to="/profile/hr-requests"
+            to="/v1/profile/hr-requests"
             className={({ isActive }) => `layouts-tab ${isActive ? 'active' : ''}`}
           >
             <GitPullRequest size={16} /> HR Requests

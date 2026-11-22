@@ -1,115 +1,22 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import Login from './pages/Login';
-import Home from './pages/Home';
 import ProtectedRoute from './components/ProtectedRoute';
-import './index.css'; // Ensure this is imported for Tailwind CSS
+import PageSkeleton from './components/skeletons/PageSkeleton';
+import './index.css';
 
-import Attendance from './pages/Attendance/Attendance';
+// Layouts (Loaded eagerly for stable navigation chrome)
 import Layout from './components/Layout';
-import Profile from './pages/profile/Profile';
-import RaiseHRRequests from './pages/profile/HRRequests';
-import MyAssets from './pages/profile/MyAssets';
-
 import LeaveNavbar from './components/Layouts/LeaveNavbar';
 import AttendanceNavbar from './components/Layouts/AttendanceNavbar';
 import SelfServiceNavbar from './components/Layouts/SelfServiceNavbar';
 import PayNavbar from './components/Layouts/PayNavbar';
 import AssetsNavbar from './components/Layouts/AssetsNavbar';
-import ApplyLeave from './pages/leaves/ApplyLeave';
-import LeaveDashboard from './pages/leaves/LeaveDashboard';
-import LeaveManagement from './pages/leaves/LeaveManagement';
-import AssetDashboard from './pages/assets/AssetDashboard';
-import AssetListTab from './pages/assets/AssetListTab';
-
-import AssetRequests from './pages/assets/AssetRequests';
-import AttendanceHistory from './pages/Attendance/AttendanceHistory';
-import Timesheet from './pages/Timesheet/Timesheet';
-import TimesheetDashboard from './pages/Attendance/TimesheetDashboard';
 import OnboardNavbar from './components/Layouts/OnboardNavbar';
-// import NewEmployee from "./pages/EmployeeHub/NewEmployee";
-import OnboardingProgress from './pages/EmployeeHub/OnboardingProgress';
-
-import EmployeeManagement from './pages/EmployeeHub/EmployeeManagement';
-import HRRequests from './pages/HRRequests/HRRequests';
-import Management from './pages/Management/Management';
-import Teams from './pages/Teamss/Teams';
 import OnboardingNavbar from './components/Layouts/OnboardingNavbar';
-import PersonalInfoForm from './pages/Onboarding/PersonalInfoForm';
-import ContactAddressForm from './pages/Onboarding/ContactAddressForm';
-import EducationForm from './pages/Onboarding/EducationForm';
-import ExperienceForm from './pages/Onboarding/ExperienceForm';
-import SkillsCertsForm from './pages/Onboarding/SkillsCertsForm';
-import ReviewSubmitForm from './pages/Onboarding/ReviewSubmitForm';
-import BankForm from './pages/Onboarding/BankForm';
 import MgmtNavbar from './components/Layouts/MgmtNavbar';
-import Events from './pages/Management/Events';
-import Holidays from './pages/Management/Holidays';
-import MgmtAnnouncements from './pages/Management/MgmtAnnouncements';
 import TeamNavbar from './components/Layouts/TeamNavbar';
-import MyTeam from './pages/Teamss/MyTeam';
-import HubDashboard from './pages/EmployeeHub/HubDashboard';
-import PayDashboard from './pages/PayRollall/Admin/PayDashboard';
-import RunPayrollMock from './pages/pay1/RunPayrollMock';
-import EmployeePayDataMock from './pages/pay1/EmployeePayDataMock';
-import PayrollSummaryMock from './pages/pay1/PayrollSummaryMock';
-import TaxDocumentsMock from './pages/pay1/TaxDocumentsMock';
-import TaxWithholdingMock from './pages/pay1/TaxWithholdingMock';
-import BankInfoMock from './pages/pay1/BankInfoMock';
-import MyPayslipsMock from './pages/pay1/MyPayslipsMock';
-import UserRolesMock from './pages/pay1/UserRolesMock';
-import PaySettingsMock from './pages/pay1/PaySettingsMock';
-import LedgerMock from './pages/pay1/LedgerMock';
-import ReportsMock from './pages/pay1/ReportsMock';
-import PayPoliciesMock from './pages/pay1/PayPoliciesMock';
-import TaxSetupMock from './pages/PayRollall/Admin/TaxSetupMock';
-import BenefitsMock from './pages/pay1/BenefitsMock';
-import PayNavbarMain from './components/Layouts/paynavbar1';
-import SalarySlip from './pages/PayRollall/pay/SalarySlip';
-import OffCyclePayslip from './pages/PayRollall/pay/OffCyclePayslip';
-import PayRegister from './pages/PayRollall/pay/PayRegister';
-import CompensationPlan from './pages/PayRollall/pay/CompensationPlan';
-import VPF from './pages/PayRollall/pay/VPF';
-import TaxComputation from './pages/PayRollall/Tax/TaxComputation';
-import TaxCalculations from './pages/PayRollall/Tax/TaxCalculations';
-import ProofSubmission from './pages/PayRollall/Tax/ProofSubmission';
-import Form16Details from './pages/PayRollall/Tax/Form16Details';
-import MyTickets from './pages/PayRollall/Helpdesk/MyTickets';
-import EmployeeProfile from './pages/PayRollall/Utilities/EmployeeProfile';
-import AadharPanLink from './pages/PayRollall/Utilities/AadharPanLink';
-import ESI from './pages/PayRollall/Utilities/ESI';
-import Form11 from './pages/PayRollall/Utilities/Form11';
-import ContributionFund from './pages/PayRollall/Utilities/ContributionFund';
-import ReimbursementSubmission from './pages/PayRollall/reiumbursment/ReimbursementSubmission';
-import ReimbursementSlip from './pages/PayRollall/reiumbursment/ReimbursementSlip';
-import ReimbursementClaimHistory from './pages/PayRollall/reiumbursment/ClaimHistory';
-import TaxDeclarations from './pages/PayRollall/Tax/TaxDeclarations';
-import SalaryStructure from './pages/PayRollall/HR/SalaryStructure';
-import EmployeePaySettings from './pages/PayRollall/HR/EmployeePaySettings';
-import PayrollSettings from './pages/PayRollall/HR/PayrollSettings';
-import OffCyclePay from './pages/PayRollall/HR/OffCyclePay';
-import RunPayroll from './pages/PayRollall/Finance/RunPayroll';
-import TDSSummary from './pages/PayRollall/Finance/TDSSummary';
-import AuditLog from './pages/PayRollall/Finance/AuditLog';
-import OrganizationSetup from './pages/PayRollall/Admin/OrganizationSetup';
-import PayComponentMaster from './pages/PayRollall/Admin/PayComponentMaster';
-import SalaryStructureTemplates from './pages/PayRollall/Admin/SalaryStructureTemplates';
-import PayrollConfiguration from './pages/PayRollall/Admin/PayrollConfiguration';
-import ImportTools from './pages/PayRollall/Admin/ImportTools';
-import DocumentManagement from './pages/PayRollall/Admin/DocumentManagement';
-import AuditLogs from './pages/PayRollall/Admin/AuditLogs';
-import BankAdvice from './pages/PayRollall/Finance/BankAdvice';
-import FinalSettlement from './pages/PayRollall/Finance/FinalSettlement';
-import PayoutApprovals from './pages/PayRollall/Finance/PayoutApprovals';
-import LeaveAdjustments from './pages/PayRollall/HR/LeaveAdjustments';
-import PayrollRemarks from './pages/PayRollall/HR/PayrollRemarks';
-import PayHome from './pages/PayRollall/pay/PayHome';
-import DeclarationsApproval from './pages/PayRollall/Finance/DeclarationsApproval';
-import TaxConfig from './pages/PayRollall/Admin/TaxConfig';
-import FinanceReports from './pages/PayRollall/Finance/FinanceReports';
-import ReimbursmentApprovals from './pages/PayRollall/Finance/ReimbursmentApprovals';
 
-// Modern V2 Theme & Shadcn Duplicate Screens
+// Modern V2 Theme & Shadcn Screens (Unchanged)
 import ModernLayout from './v2/layouts/ModernLayout';
 import ModernHome from './v2/pages/ModernHome';
 import ModernEmployees from './v2/pages/ModernEmployees';
@@ -118,15 +25,129 @@ import ModernLeaves from './v2/pages/ModernLeaves';
 import ModernPayroll from './v2/pages/ModernPayroll';
 import ModernProfile from './v2/pages/ModernProfile';
 import ModernLogin from './v2/pages/ModernLogin';
+import ModernTeams from './v2/pages/ModernTeams';
+import ModernRequests from './v2/pages/ModernRequests';
+
+// V1 Pages - Route-Level Code Splitting (lazy loading)
+const Login = lazy(() => import('./pages/Login'));
+const Home = lazy(() => import('./pages/Home'));
+const Attendance = lazy(() => import('./pages/Attendance/Attendance'));
+const Profile = lazy(() => import('./pages/profile/Profile'));
+const RaiseHRRequests = lazy(() => import('./pages/profile/HRRequests'));
+const MyAssets = lazy(() => import('./pages/profile/MyAssets'));
+
+const ApplyLeave = lazy(() => import('./pages/leaves/ApplyLeave'));
+const LeaveDashboard = lazy(() => import('./pages/leaves/LeaveDashboard'));
+const LeaveManagement = lazy(() => import('./pages/leaves/LeaveManagement'));
+
+const AssetDashboard = lazy(() => import('./pages/assets/AssetDashboard'));
+const AssetListTab = lazy(() => import('./pages/assets/AssetListTab'));
+const AssetRequests = lazy(() => import('./pages/assets/AssetRequests'));
+
+const AttendanceHistory = lazy(() => import('./pages/Attendance/AttendanceHistory'));
+const Timesheet = lazy(() => import('./pages/Timesheet/Timesheet'));
+const TimesheetDashboard = lazy(() => import('./pages/Attendance/TimesheetDashboard'));
+
+const NewEmployee = lazy(() => import('./pages/EmployeeHub/NewEmployee'));
+const OnboardingProgress = lazy(() => import('./pages/EmployeeHub/OnboardingProgress'));
+const EmployeeManagement = lazy(() => import('./pages/EmployeeHub/EmployeeManagement'));
+const HubDashboard = lazy(() => import('./pages/EmployeeHub/HubDashboard'));
+
+const HRRequests = lazy(() => import('./pages/HRRequests/HRRequests'));
+const Management = lazy(() => import('./pages/Management/Management'));
+const Teams = lazy(() => import('./pages/Teamss/Teams'));
+const MyTeam = lazy(() => import('./pages/Teamss/MyTeam'));
+
+const Events = lazy(() => import('./pages/Management/Events'));
+const Holidays = lazy(() => import('./pages/Management/Holidays'));
+const MgmtAnnouncements = lazy(() => import('./pages/Management/MgmtAnnouncements'));
+
+// Onboarding Forms
+const PersonalInfoForm = lazy(() => import('./pages/Onboarding/PersonalInfoForm'));
+const ContactAddressForm = lazy(() => import('./pages/Onboarding/ContactAddressForm'));
+const EducationForm = lazy(() => import('./pages/Onboarding/EducationForm'));
+const ExperienceForm = lazy(() => import('./pages/Onboarding/ExperienceForm'));
+const SkillsCertsForm = lazy(() => import('./pages/Onboarding/SkillsCertsForm'));
+const BankForm = lazy(() => import('./pages/Onboarding/BankForm'));
+const ReviewSubmitForm = lazy(() => import('./pages/Onboarding/ReviewSubmitForm'));
+
+// V1 Payroll Pages
+const PayHome = lazy(() => import('./pages/PayRollall/pay/PayHome'));
+const SalarySlip = lazy(() => import('./pages/PayRollall/pay/SalarySlip'));
+const OffCyclePayslip = lazy(() => import('./pages/PayRollall/pay/OffCyclePayslip'));
+const PayRegister = lazy(() => import('./pages/PayRollall/pay/PayRegister'));
+const CompensationPlan = lazy(() => import('./pages/PayRollall/pay/CompensationPlan'));
+const VPF = lazy(() => import('./pages/PayRollall/pay/VPF'));
+
+const ReimbursementSubmission = lazy(() => import('./pages/PayRollall/reiumbursment/ReimbursementSubmission'));
+const ReimbursementSlip = lazy(() => import('./pages/PayRollall/reiumbursment/ReimbursementSlip'));
+const ReimbursementClaimHistory = lazy(() => import('./pages/PayRollall/reiumbursment/ClaimHistory'));
+
+const TaxComputation = lazy(() => import('./pages/PayRollall/Tax/TaxComputation'));
+const TaxCalculations = lazy(() => import('./pages/PayRollall/Tax/TaxCalculations'));
+const TaxDeclarations = lazy(() => import('./pages/PayRollall/Tax/TaxDeclarations'));
+const ProofSubmission = lazy(() => import('./pages/PayRollall/Tax/ProofSubmission'));
+const Form16Details = lazy(() => import('./pages/PayRollall/Tax/Form16Details'));
+
+const MyTickets = lazy(() => import('./pages/PayRollall/Helpdesk/MyTickets'));
+const EmployeeProfile = lazy(() => import('./pages/PayRollall/Utilities/EmployeeProfile'));
+const AadharPanLink = lazy(() => import('./pages/PayRollall/Utilities/AadharPanLink'));
+const ESI = lazy(() => import('./pages/PayRollall/Utilities/ESI'));
+const Form11 = lazy(() => import('./pages/PayRollall/Utilities/Form11'));
+const ContributionFund = lazy(() => import('./pages/PayRollall/Utilities/ContributionFund'));
+
+const PayDashboard = lazy(() => import('./pages/PayRollall/Admin/PayDashboard'));
+const SalaryStructure = lazy(() => import('./pages/PayRollall/HR/SalaryStructure'));
+const EmployeePaySettings = lazy(() => import('./pages/PayRollall/HR/EmployeePaySettings'));
+const LeaveAdjustments = lazy(() => import('./pages/PayRollall/HR/LeaveAdjustments'));
+const PayrollRemarks = lazy(() => import('./pages/PayRollall/HR/PayrollRemarks'));
+const PayrollSettings = lazy(() => import('./pages/PayRollall/HR/PayrollSettings'));
+const OffCyclePay = lazy(() => import('./pages/PayRollall/HR/OffCyclePay'));
+const AttendanceImport = lazy(() => import('./pages/PayRollall/HR/AttendanceImport'));
+
+const RunPayroll = lazy(() => import('./pages/PayRollall/Finance/RunPayroll'));
+const DeclarationsApproval = lazy(() => import('./pages/PayRollall/Finance/DeclarationsApproval'));
+const ReimbursmentApprovals = lazy(() => import('./pages/PayRollall/Finance/ReimbursmentApprovals'));
+const BankAdvice = lazy(() => import('./pages/PayRollall/Finance/BankAdvice'));
+const FinalSettlement = lazy(() => import('./pages/PayRollall/Finance/FinalSettlement'));
+const TDSSummary = lazy(() => import('./pages/PayRollall/Finance/TDSSummary'));
+const FinanceReports = lazy(() => import('./pages/PayRollall/Finance/FinanceReports'));
+const AuditLog = lazy(() => import('./pages/PayRollall/Finance/AuditLog'));
+const PayoutApprovals = lazy(() => import('./pages/PayRollall/Finance/PayoutApprovals'));
+
+const TaxSetupMock = lazy(() => import('./pages/PayRollall/Admin/TaxSetupMock'));
+const OrganizationSetup = lazy(() => import('./pages/PayRollall/Admin/OrganizationSetup'));
+const PayComponentMaster = lazy(() => import('./pages/PayRollall/Admin/PayComponentMaster'));
+const SalaryStructureTemplates = lazy(() => import('./pages/PayRollall/Admin/SalaryStructureTemplates'));
+const PayrollConfiguration = lazy(() => import('./pages/PayRollall/Admin/PayrollConfiguration'));
+const ImportTools = lazy(() => import('./pages/PayRollall/Admin/ImportTools'));
+const DocumentManagement = lazy(() => import('./pages/PayRollall/Admin/DocumentManagement'));
+const AuditLogs = lazy(() => import('./pages/PayRollall/Admin/AuditLogs'));
+const TaxConfig = lazy(() => import('./pages/PayRollall/Admin/TaxConfig'));
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route
+          path="/login"
+          element={
+            <Suspense fallback={<PageSkeleton />}>
+              <Login />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/v1/login"
+          element={
+            <Suspense fallback={<PageSkeleton />}>
+              <Login />
+            </Suspense>
+          }
+        />
         <Route path="/v2/login" element={<ModernLogin />} />
 
-        {/* Modern V2 Duplicate Screens with Shadcn Theme */}
+        {/* Modern V2 Theme & Screens — DEFAULT Experience */}
         <Route
           path="/v2"
           element={
@@ -138,9 +159,11 @@ function App() {
           <Route index element={<Navigate to="/v2/home" replace />} />
           <Route path="home" element={<ModernHome />} />
           <Route path="employees" element={<ModernEmployees />} />
+          <Route path="teams" element={<ModernTeams />} />
           <Route path="attendance" element={<ModernAttendance />} />
           <Route path="leaves" element={<ModernLeaves />} />
           <Route path="payroll" element={<ModernPayroll />} />
+          <Route path="requests" element={<ModernRequests />} />
           <Route path="profile" element={<ModernProfile />} />
         </Route>
 
@@ -161,15 +184,19 @@ function App() {
           <Route path="review" element={<ReviewSubmitForm />} />
         </Route>
 
+        {/* Root Route — Defaults to V2 Modern UI */}
+        <Route path="/" element={<Navigate to="/v2/home" replace />} />
+
+        {/* Dedicated V1 Classic UI Application Route */}
         <Route
-          path="/"
+          path="/v1"
           element={
             <ProtectedRoute>
               <Layout />
             </ProtectedRoute>
           }
         >
-          <Route index element={<Navigate to="/home" replace />} />
+          <Route index element={<Navigate to="home" replace />} />
           <Route path="home" element={<Home />} />
 
           <Route path="attendance" element={<Attendance />} />
@@ -194,8 +221,6 @@ function App() {
             <Route path="management" element={<LeaveManagement />} />
           </Route>
 
-          {/* <Route path="Organization/OrganizationHierarchy" element={<OrganizationHierarchy />} /> */}
-
           <Route path="attendance" element={<AttendanceNavbar />}>
             <Route path="daily" element={<Attendance />} />
             <Route path="AttendanceHistory" element={<AttendanceHistory />} />
@@ -204,8 +229,9 @@ function App() {
           </Route>
 
           <Route path="employeehub" element={<OnboardNavbar />}>
+            <Route index element={<Navigate to="dashboard" replace />} />
             <Route path="dashboard" element={<HubDashboard />} />
-            {/* <Route path="new-employee" element={<NewEmployee />} /> */}
+            <Route path="new-employee" element={<NewEmployee />} />
             <Route path="progress" element={<OnboardingProgress />} />
             <Route path="employeesdata" element={<EmployeeManagement />} />
           </Route>
@@ -222,17 +248,10 @@ function App() {
           </Route>
 
           <Route path="hrrequests" element={<HRRequests />} />
-          {/* <Route path="help" element={<HelpPage />} /> */}
           <Route path="management" element={<Management />} />
-
-          {/* <Route path="inbox/announcements" element={<InboxAnnouncementsForm />} />
-          <Route path="inbox/messages" element={<InboxMessagesForm />} />
-          <Route path="inbox/notifications" element={<InboxNotificationsForm />} /> */}
 
           <Route path="pay" element={<PayNavbar />}>
             <Route path="pay" element={<PayHome />} />
-            {/* <Route path="tax" element={<Tax />} /> */}
-            {/* <Route path="dashboard" element={<PayrollDashboard />} /> */}
             <Route path="pay/pay-slip" element={<SalarySlip />} />
             <Route path="pay/offcycle-slip" element={<OffCyclePayslip />} />
             <Route path="pay/pay-register" element={<PayRegister />} />
@@ -259,6 +278,7 @@ function App() {
             <Route path="hr/payroll-remarks" element={<PayrollRemarks />} />
             <Route path="hr/payroll-settings" element={<PayrollSettings />} />
             <Route path="hr/offcycle-pay" element={<OffCyclePay />} />
+            <Route path="hr/attendance-import" element={<AttendanceImport />} />
             <Route path="finance/payroll-run" element={<RunPayroll />} />
             <Route path="finance/declarations" element={<DeclarationsApproval />} />
             <Route path="finance/rmb" element={<ReimbursmentApprovals />} />
@@ -278,25 +298,20 @@ function App() {
             <Route path="admin/audit-logs" element={<AuditLogs />} />
             <Route path="admin/tax-slab-setup" element={<TaxConfig />} />
           </Route>
-
-          {/* <Route path="pay" element={<PayNavbarMain />}>
-           <Route path="dashboard" element={<DashboardMock />} />
-           <Route path="run" element={<RunPayrollMock />} />
-           <Route path="employees" element={<EmployeePayDataMock />} />
-           <Route path="summary" element={<PayrollSummaryMock />} />
-           <Route path="benefits" element={<BenefitsMock />} />
-           <Route path="taxes" element={<TaxSetupMock />} />
-           <Route path="policies" element={<PayPoliciesMock />} />
-           <Route path="reports" element={<ReportsMock />} />
-           <Route path="ledger" element={<LedgerMock />} />
-           <Route path="settings" element={<PaySettingsMock />} />
-           <Route path="userroles" element={<UserRolesMock />} />
-           <Route path="mypayslips" element={<MyPayslipsMock />} />
-           <Route path="bankinfo" element={<BankInfoMock />} />
-           <Route path="w4" element={<TaxWithholdingMock />} />
-           <Route path="documents" element={<TaxDocumentsMock />} />
-         </Route> */}
         </Route>
+
+        {/* Legacy Unprefixed Route Compatibility Redirects */}
+        <Route path="/home" element={<Navigate to="/v1/home" replace />} />
+        <Route path="/attendance/*" element={<Navigate to="/v1/attendance/daily" replace />} />
+        <Route path="/profile/*" element={<Navigate to="/v1/profile/profile" replace />} />
+        <Route path="/assets/*" element={<Navigate to="/v1/assets/dashboard" replace />} />
+        <Route path="/leaves/*" element={<Navigate to="/v1/leaves/dashboard" replace />} />
+        <Route path="/employeehub/*" element={<Navigate to="/v1/employeehub/dashboard" replace />} />
+        <Route path="/mgmt/*" element={<Navigate to="/v1/mgmt/announcements" replace />} />
+        <Route path="/team/*" element={<Navigate to="/v1/team/allteams" replace />} />
+        <Route path="/hrrequests" element={<Navigate to="/v1/hrrequests" replace />} />
+        <Route path="/management" element={<Navigate to="/v1/management" replace />} />
+        <Route path="/pay/*" element={<Navigate to="/v1/pay/pay" replace />} />
       </Routes>
     </BrowserRouter>
   );

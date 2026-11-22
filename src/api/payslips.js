@@ -55,7 +55,10 @@ export const downloadPayslipPDF = async (token, month, year) => {
   
     if (!res.ok) throw new Error('Failed to fetch payslip months');
     const data = await res.json();
-    return data.months; 
+    if (Array.isArray(data)) return data;
+    if (Array.isArray(data?.months)) return data.months;
+    if (Array.isArray(data?.data)) return data.data;
+    return [];
   };
 
   export const fetchPayregister = async (token) => {
@@ -68,7 +71,10 @@ export const downloadPayslipPDF = async (token, month, year) => {
   
     if (!res.ok) throw new Error('Failed to fetch List');
     const data = await res.json();
-    return data.payslips; 
+    if (Array.isArray(data)) return data;
+    if (Array.isArray(data?.payslips)) return data.payslips;
+    if (Array.isArray(data?.data)) return data.data;
+    return [];
   };
   
   

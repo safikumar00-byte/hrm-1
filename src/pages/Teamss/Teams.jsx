@@ -5,6 +5,7 @@ import { useUser } from '../../hooks/useUser';
 import { XIcon } from 'lucide-react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { TeamsSkeleton } from '../../components/skeletons/TeamsAndRequestsSkeleton';
 
 const Teams = () => {
   const {
@@ -113,8 +114,8 @@ const Teams = () => {
             </tr>
           </thead>
           <tbody>
-            {members.map((member) => (
-              <tr key={member.employeeId} className="member-row">
+            {members.map((member, mIdx) => (
+              <tr key={member.employeeId || mIdx} className="member-row">
                 <td>{member.employeeId}</td>
                 <td>{member.fullName}</td>
                 <td>{member.department}</td>
@@ -139,27 +140,28 @@ const Teams = () => {
     </>
   );
 
-  const filteredTeams = teamsData
-  .slice()
-  .sort((a, b) => {
-    const nameA = a.teamName || '';
-    const nameB = b.teamName || '';
-    return nameA.localeCompare(nameB);
-  })
-  
-  .filter(({ teamName, members }) => {
-    const search = searchTerm.toLowerCase();
-    return (
-      teamName?.toLowerCase().includes(search) ||
-      members.some(
+  const safeTeams = Array.isArray(teamsData) ? [...teamsData] : [];
+  const filteredTeams = safeTeams
+    .sort((a, b) => {
+      const nameA = a?.teamName || '';
+      const nameB = b?.teamName || '';
+      return nameA.localeCompare(nameB);
+    })
+    .filter((team) => {
+      if (!team) return false;
+      const search = (searchTerm || '').toLowerCase();
+      const teamName = (team.teamName || '').toLowerCase();
+      const nameMatch = teamName.includes(search);
+      const members = Array.isArray(team.members) ? team.members : [];
+      const memberMatch = members.some(
         (m) =>
-          m.fullName?.toLowerCase().includes(search) ||
-          m.employeeId?.toString().toLowerCase().includes(search)
-      )
-    );
-  });
+          m?.fullName?.toLowerCase().includes(search) ||
+          m?.employeeId?.toString().toLowerCase().includes(search)
+      );
+      return nameMatch || memberMatch;
+    });
 
-  if (loading) return <p className="loading">Loading teams...</p>;
+  if (loading) return <TeamsSkeleton />;
   if (error) return <p className="error">{error}</p>;
 
   return (
@@ -202,8 +204,8 @@ const Teams = () => {
         {filteredTeams?.length === 0 ? (
           <p className="no-teams">No matching teams found.</p>
         ) : (
-          filteredTeams.map(({ teamName, members }) => (
-            <section key={teamName} className="team-section">
+          filteredTeams.map(({ teamName, members }, tIdx) => (
+            <section key={teamName || tIdx} className="team-section">
               <div className="team-header-wrapper">
                 <button
                   className={`team-header ${openTeam === teamName ? 'open' : ''}`}

@@ -5,15 +5,16 @@
     flex-direction: column;
     height: 100%;
     overflow: hidden;
+    background-color: #FAFAF8;
   }
   
   /* Top Nav */
   .top-navbar {
     display: flex;
     flex-wrap: wrap; 
-    background-color: #f5f5f5;
-    padding: 8px 16px;
-    border-bottom: 1px solid #ddd;
+    background-color: #FFFFFF;
+    padding: 10px 20px;
+    border-bottom: 1px solid #E5E0EA;
     gap: 12px;
     z-index: 5;
     position: relative;
@@ -29,16 +30,17 @@
     display: flex;
     align-items: center;
     cursor: pointer;
-    font-weight: 500;
-    padding: 6px 12px;
-    color: #333;
-    border-radius: 6px;
-    transition: background 0.2s;
+    font-weight: 600;
+    font-size: 13px;
+    padding: 8px 14px;
+    color: #21093D;
+    border-radius: 8px;
+    transition: all 0.2s ease;
     background-color: transparent;
   }
   
   .top-navbar-header:hover {
-    background-color: #eaeaea;
+    background-color: #F8FAFC;
   }
   
   .top-navbar-header span {
@@ -55,13 +57,14 @@
   
   /* Active Tab */
   .top-navbar-header.active-tab {
-    border-bottom: 3px solid #0066cc;
-    background-color: #eaf3ff;
-    color: #004080;
+    border-bottom: 2px solid #21093D;
+    background-color: #F0EDF4;
+    color: #21093D;
+    font-weight: 700;
   }
   
   .top-navbar-header.active-tab:hover {
-    background-color: #d8eaff;
+    background-color: #E9FFE0;
   }
   
   /* Dropdown */
@@ -69,13 +72,13 @@
     position: absolute;
     top: 100%;
     left: 0;
-    margin-top: 4px;
-    background-color: #ffffff;
-    border: 1px solid #ddd;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-    border-radius: 6px;
-    min-width: 200px;
-    max-height: 300px;
+    margin-top: 6px;
+    background-color: #FFFFFF;
+    border: 1px solid #E5E0EA;
+    box-shadow: 0 8px 24px -4px rgba(33, 9, 61, 0.12);
+    border-radius: 8px;
+    min-width: 220px;
+    max-height: 320px;
     overflow-y: auto;
     z-index: 100;
   }
@@ -99,18 +102,20 @@
   /* Dropdown Links */
   .navbar-link {
     display: block;
-    padding: 8px 12px;
+    padding: 10px 14px;
     text-decoration: none;
-    color: #333;
-    font-size: 14px;
-    border-bottom: 1px solid #f0f0f0;
-    transition: background 0.2s;
+    color: #21093D;
+    font-size: 13px;
+    font-weight: 500;
+    border-bottom: 1px solid #F0EDF4;
+    transition: all 0.2s ease;
   }
   
   .navbar-link:hover,
   .navbar-link.active {
-    background-color: #e0eaff;
-    color: #003366;
+    background-color: #E9FFE0;
+    color: #21093D;
+    font-weight: 600;
   }
   
   /* Content Area */
@@ -118,7 +123,7 @@
     padding: 24px;
     overflow: auto;
     flex-grow: 1;
-    background-color: #fff;
+    background-color: #FAFAF8;
   }
   
   /* Responsive Adjustments */

@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState, useContext } from 'react';
 import { isTokenExpired } from '../../utils/tokenUtils';
+import AppPreloader from '../common/AppPreloader';
 
 const AuthContext = createContext();
 
@@ -73,6 +74,7 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider value={{ token, role, roles, user, loading }}>
+      <AppPreloader loading={loading} />
       {children}
     </AuthContext.Provider>
   );

@@ -28,7 +28,7 @@ export function AttendanceChart() {
   const CustomTooltip = ({ active, payload, label }) => {
     if (active && payload && payload.length) {
       return (
-        <div className="rounded-[var(--radius)] border border-border bg-gradient-to-b from-white to-gray-100 dark:from-gray-800 dark:to-gray-900 p-3 shadow-md">
+        <div className="rounded-[var(--radius)] border border-border bg-card p-3 shadow-md">
           <p className="text-xs font-bold text-card-foreground">{label}</p>
           <p className="text-xs text-muted-foreground mt-0.5">
             Logged:{' '}
@@ -59,7 +59,7 @@ export function AttendanceChart() {
             type="button"
             onClick={() => setActiveRange('current')}
             className={`px-2.5 py-1 rounded-md text-[11px] font-semibold transition-all cursor-pointer ${activeRange === 'current'
-              ? 'bg-gradient-to-b from-white to-gray-100 dark:from-gray-800 dark:to-gray-900 text-card-foreground shadow-2xs font-bold'
+              ? 'bg-card text-card-foreground shadow-2xs font-bold'
               : 'text-muted-foreground hover:text-foreground'
               }`}
           >
@@ -69,7 +69,7 @@ export function AttendanceChart() {
             type="button"
             onClick={() => setActiveRange('last30')}
             className={`px-2.5 py-1 rounded-md text-[11px] font-semibold transition-all cursor-pointer ${activeRange === 'last30'
-              ? 'bg-gradient-to-b from-white to-gray-100 dark:from-gray-800 dark:to-gray-900 text-card-foreground shadow-2xs font-bold'
+              ? 'bg-card text-card-foreground shadow-2xs font-bold'
               : 'text-muted-foreground hover:text-foreground'
               }`}
           >

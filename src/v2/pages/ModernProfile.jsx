@@ -61,7 +61,7 @@ export default function ModernProfile() {
   return (
     <div className="space-y-6 animate-in fade-in-50 duration-200">
       {/* Profile Identity Hero Card */}
-      <Card className="border-2 border-primary/20 bg-gradient-to-b from-white to-gray-100 dark:from-gray-800 dark:to-gray-900 overflow-hidden">
+      <Card className="border-2 border-primary/20 bg-card overflow-hidden">
         <div className="h-28 bg-gradient-to-r from-[#21093D] via-[#382451] to-[#21093D] relative p-6">
           <Badge variant="brand" className="absolute top-4 right-4">
             Active Employee

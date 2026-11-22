@@ -12,7 +12,7 @@
   --foreground: #21093D;
 
   /* Card */
-  --card: linear-gradient(90deg, #fff, #e9ffe0);
+  --card: #FFFFFF;
   --card-foreground: #21093D;
 
   /* Popover */

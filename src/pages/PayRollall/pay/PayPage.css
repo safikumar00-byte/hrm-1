@@ -1,72 +1,96 @@
 .pay-page {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #fff;
-    color: #333;
+    font-family: inherit;
+    background-color: #FAFAF8;
+    color: #21093D;
+    padding: 24px;
+    min-height: calc(100vh - 120px);
+    box-sizing: border-box;
   }
   
   .pay-sub-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #ccc;
+    padding-bottom: 12px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #E5E0EA;
   }
   .pay-page h2{
-    padding: 5px;
+    padding: 0;
+    font-size: 22px;
+    font-weight: 700;
+    color: #21093D;
+    margin-bottom: 16px;
   }
   
   .pay-sub-header .left h3 {
     font-size: 18px;
     margin: 0;
+    font-weight: 600;
+    color: #21093D;
   }
   
   .pay-sub-header .right {
     display: flex;
-    gap: 10px;
+    gap: 12px;
+    align-items: center;
   }
   
   .pay-sub-header select {
-    margin-left: 10px;
-    padding: 4px 8px;
+    margin-left: 8px;
+    padding: 8px 14px;
     font-size: 14px;
+    border: 1px solid #E5E0EA;
+    border-radius: 8px;
+    outline: none;
+    background: #FFFFFF;
+  }
+
+  .pay-sub-header select:focus {
+    border-color: #60F61B;
+    box-shadow: 0 0 0 3px rgba(96, 246, 27, 0.2);
   }
   
   /* Month buttons */
   .month-selector {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 25px;
+    gap: 8px;
+    margin-bottom: 24px;
   }
   
   .month-btn {
-    padding: 6px 12px;
-    border: 1px solid #007BFF;
-    background-color: white;
-    color: #007BFF;
-    border-radius: 4px;
+    padding: 8px 14px;
+    border: 1px solid #E5E0EA;
+    background-color: #FFFFFF;
+    color: #21093D;
+    border-radius: 8px;
     cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s ease;
   }
   
   .month-btn:hover {
-    background-color: #007BFF;
-    color: white;
+    background-color: #F8FAFC;
+    border-color: #21093D;
   }
 
   .month-btn.selected {
-    background-color: #007BFF;
+    background-color: #21093D;
     color: white;
     font-weight: 600;
+    border-color: #21093D;
   }
   
   
   /* Payslip content */
   .slip-box {
-    border: 1px solid #ccc;
-    padding: 25px 30px;
-    border-radius: 6px;
-    background-color: #fafafa;
+    border: 1px solid #E5E0EA;
+    padding: 24px 28px;
+    border-radius: 12px;
+    background-color: #FFFFFF;
+    box-shadow: 0 4px 12px -2px rgba(33, 9, 61, 0.08);
   }
   
   .slip-header {
@@ -79,22 +103,25 @@
   .company-info h2 {
     margin: 0;
     font-size: 20px;
-    font-weight: 600;
+    font-weight: 700;
+    color: #21093D;
   }
   
   .company-info p {
     margin: 2px 0;
     font-size: 13px;
+    color: #71677D;
   }
   
   .company-logo {
-    height: 60px;
+    height: 50px;
   }
   
   .slip-title {
     text-align: center;
     font-size: 18px;
-    font-weight: 500;
+    font-weight: 700;
+    color: #21093D;
     margin-bottom: 20px;
   }
   
@@ -107,22 +134,25 @@
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
-    font-size: 14px;
+    font-size: 13px;
   }
   
   .pay-table th, .pay-table td {
-    border: 1px solid #ccc;
-    padding: 10px;
+    border: 1px solid #E5E0EA;
+    padding: 12px 14px;
     text-align: left;
   }
   
   .pay-table th {
-    background-color: #f0f0f0;
+    background-color: #F8FAFC;
+    color: #6B7280;
+    font-weight: 600;
   }
   
   .highlight {
-    background-color: #eaf6ff;
-    font-weight: 600;
+    background-color: #F8FAFC;
+    font-weight: 700;
+    color: #21093D;
   }
   
   .footer-note {

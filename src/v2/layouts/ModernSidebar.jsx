@@ -3,6 +3,7 @@ import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import {
   LayoutDashboard,
   Users,
+  Users2,
   CalendarCheck,
   FileSpreadsheet,
   Wallet,
@@ -25,9 +26,11 @@ export function ModernSidebar({ mobileOpen, onCloseMobile }) {
   const mainNavItems = [
     { label: 'Dashboard', path: '/v2/home', icon: LayoutDashboard },
     { label: 'Employees Hub', path: '/v2/employees', icon: Users, badge: '42' },
+    { label: 'Teams & Squads', path: '/v2/teams', icon: Users2, badge: '4' },
     { label: 'Attendance', path: '/v2/attendance', icon: CalendarCheck },
     { label: 'Leaves', path: '/v2/leaves', icon: FileSpreadsheet, badge: 'Active' },
     { label: 'Payroll & Tax', path: '/v2/payroll', icon: Wallet },
+    { label: 'HR Requests', path: '/v2/requests', icon: HelpCircle, badge: '4' },
   ];
 
   const secondaryNavItems = [

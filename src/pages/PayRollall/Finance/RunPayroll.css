@@ -24,20 +24,28 @@
   .run-payroll-form button {
     padding: 8px 12px;
     font-size: 14px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
+    border-radius: 8px;
+    border: 1px solid #E5E0EA;
+  }
+  
+  .run-payroll-form input:focus,
+  .run-payroll-form select:focus {
+    border-color: #60F61B;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(96, 246, 27, 0.2);
   }
   
   .run-payroll-form button {
-    background-color: #007bff;
+    background-color: #21093D;
     color: white;
     border: none;
     cursor: pointer;
+    font-weight: 600;
     transition: background-color 0.2s ease;
   }
   
   .run-payroll-form button:hover {
-    background-color: #0056b3;
+    background-color: #381661;
   }
 
   
@@ -67,11 +75,12 @@
   }
   
   .kpi-card {
-    background: #f9f9f9;
-    padding: 1rem 1.5rem;
-    border-radius: 10px;
+    background: #FFFFFF;
+    padding: 1.25rem 1.5rem;
+    border-radius: 12px;
+    border: 1px solid #E5E0EA;
     flex: 1;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px -2px rgba(33, 9, 61, 0.08);
     text-align: center;
   }
   

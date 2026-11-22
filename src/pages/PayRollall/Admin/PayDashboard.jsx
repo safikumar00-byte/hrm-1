@@ -21,8 +21,8 @@ const PayDashboard= () => {
         const token = getToken();
         const runsData = await fetchPayrollruns(token);
         const payrollData = await fetchAllPayrolls(token);
-        setPayrollRuns(runsData);
-        setPayrolls(payrollData);
+        setPayrollRuns(Array.isArray(runsData) ? runsData : (runsData?.data || []));
+        setPayrolls(Array.isArray(payrollData) ? payrollData : (payrollData?.data || []));
       } catch (err) {
         console.error('Error loading dashboard data:', err);
       } finally {
@@ -32,22 +32,24 @@ const PayDashboard= () => {
     loadData();
   }, []);
 
+  const safeRuns = Array.isArray(payrollRuns) ? payrollRuns : [];
+  const safePayrolls = Array.isArray(payrolls) ? payrolls : [];
 
-  const totalPayroll = payrollRuns.reduce((sum, r) => sum + (r.totalNetPay || 0), 0);
-  const employeesPaid = [...new Set(payrolls.map(p => p.employeeId))].length;
-  const totalTax = payrolls.reduce((sum, p) => sum + (p.tds || 0), 0);
-  const nextPayDate = payrollRuns.length > 0
-    ? new Date(Math.max(...payrollRuns.map(r => new Date(r.processedDate)))).toLocaleDateString()
+  const totalPayroll = safeRuns.reduce((sum, r) => sum + (Number(r.totalNetPay) || 0), 0);
+  const employeesPaid = [...new Set(safePayrolls.map(p => p?.employeeId).filter(Boolean))].length;
+  const totalTax = safePayrolls.reduce((sum, p) => sum + (Number(p.tds) || 0), 0);
+  const nextPayDate = safeRuns.length > 0 && safeRuns.some(r => r && r.processedDate)
+    ? new Date(Math.max(...safeRuns.filter(r => r && r.processedDate).map(r => new Date(r.processedDate)))).toLocaleDateString()
     : '-';
 
-  const trends = payrollRuns
+  const trends = [...safeRuns]
     .sort((a, b) => new Date(a.processedDate) - new Date(b.processedDate))
     .map(r => ({
       date: `${r.month}/${r.year}`,
       total: r.totalNetPay || 0
     }));
 
-  const recentRuns = payrollRuns
+  const recentRuns = [...safeRuns]
     .sort((a, b) => new Date(b.processedDate) - new Date(a.processedDate))
     .slice(0, 5)
     .map(r => ({

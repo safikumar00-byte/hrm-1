@@ -15,14 +15,14 @@ function AttendanceNavbar() {
     <div className="layouts-container">
       <nav className="layouts-navbar">
         <NavLink
-          to="/attendance/daily"
+          to="/v1/attendance/daily"
           className={({ isActive }) => `layouts-tab ${isActive ? 'active' : ''}`}
         >
          <Clock size={16} /> Attendance
         </NavLink>
         
         <NavLink
-          to="/attendance/timesheet"
+          to="/v1/attendance/timesheet"
           className={({ isActive }) => `layouts-tab ${isActive ? 'active' : ''}`}
         >
           <Calendar size={16} />  Timesheet
@@ -30,7 +30,7 @@ function AttendanceNavbar() {
 
         {canViewHistory && (
           <NavLink
-            to="/attendance/AttendanceHistory"
+            to="/v1/attendance/AttendanceHistory"
             className={({ isActive }) => `layouts-tab ${isActive ? 'active' : ''}`}
           >
            <ClockArrowUp size={16} />  Attendance History
@@ -38,7 +38,7 @@ function AttendanceNavbar() {
         )}
         {canViewHistory && (
           <NavLink
-            to="/attendance/timesheetdashboard"
+            to="/v1/attendance/timesheetdashboard"
             className={({ isActive }) => `layouts-tab ${isActive ? 'active' : ''}`}
           >
             <CalendarCog size={16} /> Timesheet Dashboard

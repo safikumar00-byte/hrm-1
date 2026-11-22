@@ -16,11 +16,11 @@
 /* Form Base */
 .tax-form {
   background-color: #ffffff;
-  border: 1px solid #e1e4e8;
-  border-radius: 10px;
+  border: 1px solid #E5E0EA;
+  border-radius: 12px;
   padding: 30px;
   margin-bottom: 48px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 4px 12px -2px rgba(33, 9, 61, 0.08);
 }
 
 /* Section Headers */
@@ -59,18 +59,19 @@
 
 .tax-form-group input,
 .tax-form-group select {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  padding: 10px 12px;
+  border: 1px solid #E5E0EA;
+  border-radius: 8px;
   font-size: 14px;
   background-color: #fff;
-  transition: border-color 0.3s ease;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .tax-form-group input:focus,
 .tax-form-group select:focus {
-  border-color: #007bff;
+  border-color: #60F61B;
   outline: none;
+  box-shadow: 0 0 0 3px rgba(96, 246, 27, 0.2);
 }
 
 /* Submit Button */
@@ -80,19 +81,19 @@
 }
 
 .tax-submit-btn {
-  background-color: #0054a6;
+  background-color: #21093D;
   color: #fff;
-  padding: 12px 28px;
-  font-size: 15px;
+  padding: 10px 24px;
+  font-size: 14px;
   font-weight: 600;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.25s ease;
 }
 
 .tax-submit-btn:hover {
-  background-color: #003d82;
+  background-color: #381661;
 }
 
 .tax-submit-btn:disabled {
@@ -129,7 +130,8 @@
 }
 
 .tax-table th {
-  background-color: #f3f3f3;
+  background-color: #F8FAFC;
+  color: #6B7280;
   font-weight: 600;
 }
 
@@ -152,10 +154,9 @@
 /* Modal */
 .tax-modal-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 100vw;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   background: rgba(0, 0, 0, 0.45);
   display: flex;
   align-items: center;
@@ -221,17 +222,19 @@
 }
 
 .calculate-btn {
-  padding: 0.75rem 1.5rem;
-  font-weight: bold;
-  background: #1976d2;
+  padding: 10px 20px;
+  font-weight: 600;
+  font-size: 14px;
+  background: #21093D;
   color: #fff;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
   cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
 .calculate-btn:hover {
-  background: #125ca1;
+  background: #381661;
 }
 
 .results-table {
@@ -285,16 +288,19 @@
 }
 
 .print-button {
-  background-color: #1976d2;
+  background-color: #21093D;
   color: white;
   border: none;
   padding: 8px 16px;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
+  font-weight: 600;
+  font-size: 13px;
+  transition: background-color 0.2s ease;
 }
 
 .print-button:hover {
-  background-color: #115293;
+  background-color: #381661;
 }
 
 @media print {

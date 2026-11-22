@@ -32,8 +32,19 @@
 
 .top-controls input[type="text"],
 .top-controls select {
-  padding: 6px 10px;
-  font-size: 14px;
+  padding: 8px 12px;
+  font-size: 13px;
+  border: 1px solid #E5E0EA;
+  border-radius: 8px;
+  background-color: #FFFFFF;
+  color: #21093D;
+  outline: none;
+}
+
+.top-controls input[type="text"]:focus,
+.top-controls select:focus {
+  border-color: #60F61B;
+  box-shadow: 0 0 0 2px rgba(96, 246, 27, 0.2);
 }
 
 /* Right side button */
@@ -41,20 +52,24 @@
   flex-shrink: 0;
 }
 
-.create-asset-button {
+.create-asset-button,
+.create-button {
   padding: 8px 16px;
-  background-color: #4CAF50;
+  background-color: #21093D;
   color: white;
   border: none;
-  border-radius: 6px;
-  font-weight: bold;
-  font-size: 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 13px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 6px rgba(33, 9, 61, 0.15);
+  transition: background-color 0.2s ease, transform 0.15s ease;
 }
 
-.create-asset-button:hover {
-  background-color: #45a049;
+.create-asset-button:hover,
+.create-button:hover {
+  background-color: #381661;
+  transform: translateY(-1px);
 }
 
 /* Table styles */
@@ -62,46 +77,65 @@
   width: 100%;
   border-collapse: collapse;
   margin-top: 16px;
+  font-size: 13px;
 }
 
 .asset-list-table th,
 .asset-list-table td {
-  border: 1px solid #ccc;
-  padding: 8px;
+  border-bottom: 1px solid #E5E0EA;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  padding: 12px 16px;
   text-align: left;
-  font-weight: normal;
+  vertical-align: middle;
 }
 
 .asset-list-table th {
-  background-color: #f0f0f0;
-  font-weight: bold;
+  background-color: #F8FAFC;
+  color: #6B7280;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.asset-list-table tbody tr:hover td {
+  background-color: #F8FAFC;
 }
 
 /* Status styling */
 .status {
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 12px;
+  white-space: nowrap;
 }
 
 .status.available {
-  background-color: #d4edda;
-  color: #155724;
+  background-color: #ECFDF5;
+  color: #065F46;
+  border: 1px solid #A7F3D0;
 }
 
 .status.assigned {
-  background-color: #f8d7da;
-  color: #721c24;
+  background-color: #FFFBEB;
+  color: #92400E;
+  border: 1px solid #FDE68A;
 }
 
 .status.repair {
-  background-color: #fff3cd;
-  color: #856404;
+  background-color: #FFFBEB;
+  color: #92400E;
+  border: 1px solid #FDE68A;
 }
 
-.status.retired {
-  background-color: #e2e3e5;
-  color: #6c757d;
+.status.retired,
+.status.lost {
+  background-color: #FEF2F2;
+  color: #991B1B;
+  border: 1px solid #FECACA;
 }
 
 .status.lost {
@@ -122,6 +156,7 @@
 
 /* Pagination styling */
 .pagination {
+  padding: 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;

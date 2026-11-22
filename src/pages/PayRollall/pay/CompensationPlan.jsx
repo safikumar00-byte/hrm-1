@@ -23,8 +23,13 @@ const CompensationPlan = () => {
         const data = await fetchMSalaryStructure(token);
         const profileData = await fetchProfile(token);
         setProfile(profileData);
-        if (data && data.length > 0) {
-          setSalary(data[0]);
+        const sal = Array.isArray(data)
+          ? data[0]
+          : Array.isArray(data?.data)
+          ? data.data[0]
+          : data;
+        if (sal && typeof sal === 'object') {
+          setSalary(sal);
         } else {
           setError('No salary structure found.');
         }

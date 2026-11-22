@@ -20,7 +20,7 @@ export function AnnouncementsCard({ announcements = [] }) {
 
   return (
     <>
-      <Card className="flex flex-col justify-between border border-border bg-gradient-to-b from-white to-gray-100 dark:from-gray-800 dark:to-gray-900 shadow-xs rounded-[var(--radius)] h-full overflow-hidden">
+      <Card className="flex flex-col justify-between border border-border shadow-xs rounded-[var(--radius)] h-full overflow-hidden">
         <div>
           {/* Header */}
           <CardHeader className="flex flex-row items-center justify-between pb-3 pt-5 px-5 sm:px-6">

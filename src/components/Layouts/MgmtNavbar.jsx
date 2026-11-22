@@ -9,19 +9,19 @@ const MgmtNavbar = () => {
     <div className="layouts-container">
       <nav className="layouts-navbar">
         <NavLink
-          to="/mgmt/announcements"
+          to="/v1/mgmt/announcements"
           className={({ isActive }) => `layouts-tab ${isActive ? 'active' : ''}`}
         >
           <Megaphone size={16} /> Announcements
         </NavLink>
         <NavLink
-          to="/mgmt/events"
+          to="/v1/mgmt/events"
           className={({ isActive }) => `layouts-tab ${isActive ? 'active' : ''}`}
         >
           <CalendarCheck2 size={16} /> Upcoming Events
         </NavLink>
         <NavLink
-          to="/mgmt/holidays"
+          to="/v1/mgmt/holidays"
           className={({ isActive }) => `layouts-tab ${isActive ? 'active' : ''}`}
         >
           <List size={16} /> Holidays List

@@ -9,37 +9,37 @@ const AssetsNavbar = () => {
     <div>
       <nav className="layouts-navbar">
         <NavLink
-          to="/assets/dashboard"
+          to="/v1/assets/dashboard"
           className={({ isActive }) => `layouts-tab ${isActive ? 'active' : ''}`}
         >
         <LayoutDashboard size={16} />  Dashboard
         </NavLink>
         <NavLink
-          to="/assets/list"
+          to="/v1/assets/list"
           className={({ isActive }) => `layouts-tab ${isActive ? 'active' : ''}`}
         >
          <List size={16} /> Assets List
         </NavLink>
         {/* <NavLink
-          to="/assets/category"
+          to="/v1/assets/category"
           className={({ isActive }) => `layouts-tab ${isActive ? 'active' : ''}`}
         >
           Asset Category
         </NavLink> */}
         {/* <NavLink
-          to="/assets/log"
+          to="/v1/assets/log"
           className={({ isActive }) => `layouts-tab ${isActive ? 'active' : ''}`}
         >
           Assets Log
         </NavLink> */}
         {/* <NavLink
-          to="/assets/reports"
+          to="/v1/assets/reports"
           className={({ isActive }) => `assets-tab ${isActive ? 'active' : ''}`}
         >
           Reports
         </NavLink> */}
         <NavLink
-          to="/assets/requests"
+          to="/v1/assets/requests"
           className={({ isActive }) => `layouts-tab ${isActive ? 'active' : ''}`}
         >
          <Archive size={16} /> Assets Requests

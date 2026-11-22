@@ -14,7 +14,7 @@ export function EventsAndBirthdaysCard({ events = [], birthdays = [] }) {
   ).length;
 
   return (
-    <Card className="flex flex-col justify-between border border-border bg-gradient-to-b from-white to-gray-100 dark:from-gray-800 dark:to-gray-900 shadow-xs rounded-[var(--radius)] h-full overflow-hidden">
+    <Card className="flex flex-col justify-between border border-border shadow-xs rounded-[var(--radius)] h-full overflow-hidden">
       <div>
         {/* Header with Title and Tabs Trigger */}
         <CardHeader className="pb-3 pt-5 px-5 sm:px-6">
@@ -44,7 +44,7 @@ export function EventsAndBirthdaysCard({ events = [], birthdays = [] }) {
               <TabsList className="h-9 p-1 bg-secondary/80 rounded-lg">
                 <TabsTrigger
                   value="events"
-                  className="text-xs font-semibold px-3 py-1 data-[state=active]:bg-gradient-to-b from-white to-gray-100 dark:from-gray-800 dark:to-gray-900 data-[state=active]:text-card-foreground data-[state=active]:shadow-2xs"
+                  className="text-xs font-semibold px-3 py-1 data-[state=active]:bg-card data-[state=active]:text-card-foreground data-[state=active]:shadow-2xs"
                 >
                   <Calendar className="w-3.5 h-3.5 mr-1.5" />
                   <span>Events</span>
@@ -57,7 +57,7 @@ export function EventsAndBirthdaysCard({ events = [], birthdays = [] }) {
 
                 <TabsTrigger
                   value="birthdays"
-                  className="text-xs font-semibold px-3 py-1 data-[state=active]:bg-gradient-to-b from-white to-gray-100 dark:from-gray-800 dark:to-gray-900 data-[state=active]:text-card-foreground data-[state=active]:shadow-2xs"
+                  className="text-xs font-semibold px-3 py-1 data-[state=active]:bg-card data-[state=active]:text-card-foreground data-[state=active]:shadow-2xs"
                 >
                   <Gift className="w-3.5 h-3.5 mr-1.5" />
                   <span>Birthdays</span>

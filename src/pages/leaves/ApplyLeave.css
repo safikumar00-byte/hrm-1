@@ -28,11 +28,12 @@
 .leave-form input,
 .leave-form select,
 .leave-form textarea {
-  padding: 10px 12px;
+  padding: 8px 12px;
   border-radius: 8px;
-  border: 1px solid #ccd1d9;
-  font-size: 15px;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #E5E0EA;
+  font-size: 14px;
+  color: #21093D;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
   width: 100%;
   box-sizing: border-box;
 }
@@ -40,9 +41,9 @@
 .leave-form input:focus,
 .leave-form select:focus,
 .leave-form textarea:focus {
-  border-color: #28a745;
+  border-color: #60F61B;
   outline: none;
-  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.2);
+  box-shadow: 0 0 0 3px rgba(96, 246, 27, 0.2);
 }
 
 .leave-form textarea {
@@ -63,19 +64,21 @@
 
 .leave-form button {
   margin-top: 24px;
-  padding: 14px;
-  background-color: #28a745;
+  padding: 10px 20px;
+  background-color: #21093D;
   color: white;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 6px rgba(33, 9, 61, 0.15);
+  transition: background-color 0.2s ease, transform 0.15s ease;
 }
 
 .leave-form button:hover {
-  background-color: #218838;
+  background-color: #381661;
+  transform: translateY(-1px);
 }
 
 .modal-overlay {

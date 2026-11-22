@@ -1,9 +1,10 @@
 .payroll-dashboard-container {
-    padding: 24px;
-    min-height: 100vh;
-    font-family: 'Segoe UI', sans-serif;
-    margin-left: 2%;
-  }
+  padding: 24px;
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+  width: 100%;
+  box-sizing: border-box;
+}
   
   .dashboard-header {
     display: flex;

@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
+import PageSkeleton from '../skeletons/PageSkeleton';
 import './LayoutsStyle.css';
 
 const OnboardingNavbar = () => {
@@ -64,7 +65,9 @@ const OnboardingNavbar = () => {
       </nav>
 
       <div className="onboarding-page-content">
-        <Outlet />
+        <Suspense fallback={<PageSkeleton />}>
+          <Outlet />
+        </Suspense>
       </div>
     </div>
   );

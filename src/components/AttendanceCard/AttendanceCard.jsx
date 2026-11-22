@@ -90,7 +90,7 @@ function AttendanceCard() {
       <ResponsiveContainer width="100%" height="100%">
   <BarChart
     data={chartData}
-    margin={{ top: 0, right: -20, left: -20, bottom: -10 }}
+    margin={{ top: 10, right: 10, left: -15, bottom: 0 }}
   >
     <XAxis
       dataKey="day"

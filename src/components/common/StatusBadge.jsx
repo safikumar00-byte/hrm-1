@@ -1,19 +1,20 @@
+import React from 'react';
+
 const StatusBadge = ({ status }) => {
-    switch (status) {
-      case "Approved":
-        return <span className={` status-approved`}>Approved</span>;
-      case "Resolved":
-          return <span className={`status-approved`}>Resolved</span>;
-      case "Rejected":
-        return <span className={`status-rejected`}>Rejected</span>;
-        case "In Progress":
-          return <span className={`status-pending`}>InProgress</span>;
-      case "Pending":
-      default:
-        return <span className={`status-pending`}>Pending</span>;
-      
-    }
-  };
-  
-  export default StatusBadge;
-  
+  const text = status || 'Pending';
+  const normalized = text.trim().toLowerCase();
+
+  let statusClass = 'status-pending';
+
+  if (['approved', 'resolved', 'completed', 'active', 'available', 'paid', 'present'].includes(normalized)) {
+    statusClass = 'status-approved';
+  } else if (['pending', 'in progress', 'in-progress', 'inprogress', 'assigned', 'in repair', 'on leave', 'wfh'].includes(normalized)) {
+    statusClass = 'status-pending';
+  } else if (['rejected', 'failed', 'cancelled', 'retired', 'lost', 'disabled', 'inactive', 'absent'].includes(normalized)) {
+    statusClass = 'status-rejected';
+  }
+
+  return <span className={`status-badge ${statusClass}`}>{text}</span>;
+};
+
+export default StatusBadge;

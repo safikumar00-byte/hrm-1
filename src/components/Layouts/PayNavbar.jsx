@@ -34,7 +34,7 @@ function PayNavbar() {
   }, []);
 
   const isActiveSection = (sectionKey) => {
-    return location.pathname.startsWith(`/pay/${sectionKey}`);
+    return location.pathname.includes(`/pay/${sectionKey}`);
   };
   const closeDropdown = () => setOpenSection(null);
 
@@ -51,12 +51,12 @@ function PayNavbar() {
           isOpen={openSection === 'pay'}
           toggle={toggleSection}
         >
-          <NavLink to="/pay/pay" className="navbar-link" onClick={closeDropdown}>Dashboard</NavLink>
-          <NavLink to="/pay/pay/pay-slip" className="navbar-link" onClick={closeDropdown}>Salary PaySlip</NavLink>
-          <NavLink to="/pay/pay/offcycle-slip" className="navbar-link" onClick={closeDropdown}>Off-Cycle Payslip</NavLink>
-          <NavLink to="/pay/pay/pay-register" className="navbar-link" onClick={closeDropdown}>Pay Register</NavLink>
-          <NavLink to="/pay/pay/compensation-plan" className="navbar-link" onClick={closeDropdown}>Compensation Plan</NavLink>
-          {/* <NavLink to="/pay/pay/vpf" className="navbar-link" onClick={closeDropdown}>VPF</NavLink> */}
+          <NavLink to="/v1/pay/pay" className="navbar-link" onClick={closeDropdown}>Dashboard</NavLink>
+          <NavLink to="/v1/pay/pay/pay-slip" className="navbar-link" onClick={closeDropdown}>Salary PaySlip</NavLink>
+          <NavLink to="/v1/pay/pay/offcycle-slip" className="navbar-link" onClick={closeDropdown}>Off-Cycle Payslip</NavLink>
+          <NavLink to="/v1/pay/pay/pay-register" className="navbar-link" onClick={closeDropdown}>Pay Register</NavLink>
+          <NavLink to="/v1/pay/pay/compensation-plan" className="navbar-link" onClick={closeDropdown}>Compensation Plan</NavLink>
+          {/* <NavLink to="/v1/pay/pay/vpf" className="navbar-link" onClick={closeDropdown}>VPF</NavLink> */}
         </DropdownSection>
 
         {/* REIMBURSEMENT -  All roles*/}
@@ -69,9 +69,9 @@ function PayNavbar() {
             isOpen={openSection === 'reimbursment'}
             toggle={toggleSection}
           >
-            <NavLink to="/pay/reimbursment/submission" className="navbar-link" onClick={closeDropdown}>Reimbursement Submission</NavLink>
-            <NavLink to="/pay/reimbursment/slip" className="navbar-link" onClick={closeDropdown}>Reimbursement Slip</NavLink>
-            <NavLink to="/pay/reimbursment/history" className="navbar-link" onClick={closeDropdown}>Reimbursement Claim History</NavLink>
+            <NavLink to="/v1/pay/reimbursment/submission" className="navbar-link" onClick={closeDropdown}>Reimbursement Submission</NavLink>
+            <NavLink to="/v1/pay/reimbursment/slip" className="navbar-link" onClick={closeDropdown}>Reimbursement Slip</NavLink>
+            <NavLink to="/v1/pay/reimbursment/history" className="navbar-link" onClick={closeDropdown}>Reimbursement Claim History</NavLink>
           </DropdownSection>
         )}
 
@@ -84,11 +84,11 @@ function PayNavbar() {
           isOpen={openSection === 'tax'}
           toggle={toggleSection}
         >
-          <NavLink to="/pay/tax/computation" className="navbar-link" onClick={closeDropdown}>Tax Computation</NavLink>
-          <NavLink to="/pay/tax/calculations" className="navbar-link" onClick={closeDropdown}>Tax Calculations</NavLink>
-          <NavLink to="/pay/tax/declarations" className="navbar-link" onClick={closeDropdown}>Tax Declarations</NavLink>
-          {/* <NavLink to="/pay/tax/proof-submission" className="navbar-link" onClick={closeDropdown}>Proof Submission</NavLink> */}
-          {/* <NavLink to="/pay/tax/form16" className="navbar-link" onClick={closeDropdown}>Form 16</NavLink> */}
+          <NavLink to="/v1/pay/tax/computation" className="navbar-link" onClick={closeDropdown}>Tax Computation</NavLink>
+          <NavLink to="/v1/pay/tax/calculations" className="navbar-link" onClick={closeDropdown}>Tax Calculations</NavLink>
+          <NavLink to="/v1/pay/tax/declarations" className="navbar-link" onClick={closeDropdown}>Tax Declarations</NavLink>
+          {/* <NavLink to="/v1/pay/tax/proof-submission" className="navbar-link" onClick={closeDropdown}>Proof Submission</NavLink> */}
+          {/* <NavLink to="/v1/pay/tax/form16" className="navbar-link" onClick={closeDropdown}>Form 16</NavLink> */}
         </DropdownSection>
 
         {/* Utilities - All roles */}
@@ -100,11 +100,11 @@ function PayNavbar() {
           isOpen={openSection === 'utilities'}
           toggle={toggleSection}
         >
-          <NavLink to="/pay/utilities/profile" className="navbar-link" onClick={closeDropdown}>Employee Profile</NavLink>
-          {/* <NavLink to="/pay/utilities/aadharpan" className="navbar-link" onClick={closeDropdown}>Aadhar/PAN Link</NavLink> */}
-          <NavLink to="/pay/utilities/esi" className="navbar-link" onClick={closeDropdown}>ESI</NavLink>
-          {/* <NavLink to="/pay/utilities/form11" className="navbar-link" onClick={closeDropdown}>Form 11</NavLink>
-          <NavLink to="/pay/utilities/fund" className="navbar-link" onClick={closeDropdown}>Contribution Fund</NavLink> */}
+          <NavLink to="/v1/pay/utilities/profile" className="navbar-link" onClick={closeDropdown}>Employee Profile</NavLink>
+          {/* <NavLink to="/v1/pay/utilities/aadharpan" className="navbar-link" onClick={closeDropdown}>Aadhar/PAN Link</NavLink> */}
+          <NavLink to="/v1/pay/utilities/esi" className="navbar-link" onClick={closeDropdown}>ESI</NavLink>
+          {/* <NavLink to="/v1/pay/utilities/form11" className="navbar-link" onClick={closeDropdown}>Form 11</NavLink>
+          <NavLink to="/v1/pay/utilities/fund" className="navbar-link" onClick={closeDropdown}>Contribution Fund</NavLink> */}
         </DropdownSection>
          {/* Help Desk - All roles */}
          <DropdownSection
@@ -115,7 +115,7 @@ function PayNavbar() {
           isOpen={openSection === 'helpdesk'}
           toggle={toggleSection}
         >
-          <NavLink to="/pay/helpdesk/tickets" className="navbar-link" onClick={closeDropdown}>My Tickets</NavLink>
+          <NavLink to="/v1/pay/helpdesk/tickets" className="navbar-link" onClick={closeDropdown}>My Tickets</NavLink>
         </DropdownSection>
 
         {/* HR Section */}
@@ -128,13 +128,13 @@ function PayNavbar() {
     isOpen={openSection === 'hr'}
     toggle={toggleSection}
   >
-    <NavLink to="/pay/dashboard" className="navbar-link" onClick={closeDropdown}>HR Dashboard</NavLink>
-    <NavLink to="/pay/hr/salary-structure" className="navbar-link" onClick={closeDropdown}>Salary Structure</NavLink>
-    <NavLink to="/pay/hr/employee-pay-settings" className="navbar-link" onClick={closeDropdown}>Employee Pay Settings</NavLink>
-    <NavLink to="/pay/hr/attendance-import" className="navbar-link" onClick={closeDropdown}>Attendance Import</NavLink>
-    <NavLink to="/pay/hr/leave-adjustments" className="navbar-link" onClick={closeDropdown}>Leave Adjustments</NavLink>
-    <NavLink to="/pay/hr/offcycle-pay" className="navbar-link" onClick={closeDropdown}>Off-Cycle Processing</NavLink>
-    <NavLink to="/pay/hr/payroll-remarks" className="navbar-link" onClick={closeDropdown}>Payroll Remarks</NavLink>
+    <NavLink to="/v1/pay/dashboard" className="navbar-link" onClick={closeDropdown}>HR Dashboard</NavLink>
+    <NavLink to="/v1/pay/hr/salary-structure" className="navbar-link" onClick={closeDropdown}>Salary Structure</NavLink>
+    <NavLink to="/v1/pay/hr/employee-pay-settings" className="navbar-link" onClick={closeDropdown}>Employee Pay Settings</NavLink>
+    <NavLink to="/v1/pay/hr/attendance-import" className="navbar-link" onClick={closeDropdown}>Attendance Import</NavLink>
+    <NavLink to="/v1/pay/hr/leave-adjustments" className="navbar-link" onClick={closeDropdown}>Leave Adjustments</NavLink>
+    <NavLink to="/v1/pay/hr/offcycle-pay" className="navbar-link" onClick={closeDropdown}>Off-Cycle Processing</NavLink>
+    <NavLink to="/v1/pay/hr/payroll-remarks" className="navbar-link" onClick={closeDropdown}>Payroll Remarks</NavLink>
   </DropdownSection>
 )}
 
@@ -149,15 +149,15 @@ function PayNavbar() {
     isOpen={openSection === 'finance'}
     toggle={toggleSection}
   >
-    <NavLink to="/pay/finance/payroll-run" className="navbar-link" onClick={closeDropdown}>Run Payroll</NavLink>
-    <NavLink to="/pay/finance/reports" className="navbar-link" onClick={closeDropdown}>Finance Reports</NavLink>
-    <NavLink to="/pay/finance/bank-advice" className="navbar-link" onClick={closeDropdown}>Bank Advice</NavLink>
-    <NavLink to="/pay/finance/final-settlement" className="navbar-link" onClick={closeDropdown}>Final Settlement</NavLink>
-    <NavLink to="/pay/finance/declarations" className="navbar-link" onClick={closeDropdown}>Investment Declarations</NavLink>
-    <NavLink to="/pay/finance/rmb" className="navbar-link" onClick={closeDropdown}>Reimbursment Approvals</NavLink>
-    <NavLink to="/pay/finance/payout-approvals" className="navbar-link" onClick={closeDropdown}>Payout Approvals</NavLink>
-    <NavLink to="/pay/finance/tds-summary" className="navbar-link" onClick={closeDropdown}>TDS Summary</NavLink>
-    <NavLink to="/pay/finance/audit-log" className="navbar-link" onClick={closeDropdown}>Audit Log</NavLink>
+    <NavLink to="/v1/pay/finance/payroll-run" className="navbar-link" onClick={closeDropdown}>Run Payroll</NavLink>
+    <NavLink to="/v1/pay/finance/reports" className="navbar-link" onClick={closeDropdown}>Finance Reports</NavLink>
+    <NavLink to="/v1/pay/finance/bank-advice" className="navbar-link" onClick={closeDropdown}>Bank Advice</NavLink>
+    <NavLink to="/v1/pay/finance/final-settlement" className="navbar-link" onClick={closeDropdown}>Final Settlement</NavLink>
+    <NavLink to="/v1/pay/finance/declarations" className="navbar-link" onClick={closeDropdown}>Investment Declarations</NavLink>
+    <NavLink to="/v1/pay/finance/rmb" className="navbar-link" onClick={closeDropdown}>Reimbursment Approvals</NavLink>
+    <NavLink to="/v1/pay/finance/payout-approvals" className="navbar-link" onClick={closeDropdown}>Payout Approvals</NavLink>
+    <NavLink to="/v1/pay/finance/tds-summary" className="navbar-link" onClick={closeDropdown}>TDS Summary</NavLink>
+    <NavLink to="/v1/pay/finance/audit-log" className="navbar-link" onClick={closeDropdown}>Audit Log</NavLink>
   </DropdownSection>
 )}
 
@@ -172,15 +172,15 @@ function PayNavbar() {
     isOpen={openSection === 'admin'}
     toggle={toggleSection}
   >
-    <NavLink to="/pay/dashboard" className="navbar-link" onClick={closeDropdown}>Admin Dashboard</NavLink>
-    <NavLink to="/pay/admin/organization-setup" className="navbar-link" onClick={closeDropdown}>Organization Setup</NavLink>
-    <NavLink to="/pay/admin/pay-component-master" className="navbar-link" onClick={closeDropdown}>Pay Component Master</NavLink>
-    <NavLink to="/pay/admin/salary-structure-templates" className="navbar-link" onClick={closeDropdown}>Salary Structure Templates</NavLink>
-    <NavLink to="/pay/admin/payroll-config" className="navbar-link" onClick={closeDropdown}>Payroll Configuration</NavLink>
-    <NavLink to="/pay/admin/tax-slab-setup" className="navbar-link" onClick={closeDropdown}>Tax Slab Setup</NavLink>
-    <NavLink to="/pay/admin/import-tools" className="navbar-link" onClick={closeDropdown}>Import Tools</NavLink>
-    <NavLink to="/pay/admin/document-management" className="navbar-link" onClick={closeDropdown}>Document Management</NavLink>
-    <NavLink to="/pay/admin/audit-logs" className="navbar-link" onClick={closeDropdown}>Audit Logs</NavLink>
+    <NavLink to="/v1/pay/dashboard" className="navbar-link" onClick={closeDropdown}>Admin Dashboard</NavLink>
+    <NavLink to="/v1/pay/admin/organization-setup" className="navbar-link" onClick={closeDropdown}>Organization Setup</NavLink>
+    <NavLink to="/v1/pay/admin/pay-component-master" className="navbar-link" onClick={closeDropdown}>Pay Component Master</NavLink>
+    <NavLink to="/v1/pay/admin/salary-structure-templates" className="navbar-link" onClick={closeDropdown}>Salary Structure Templates</NavLink>
+    <NavLink to="/v1/pay/admin/payroll-config" className="navbar-link" onClick={closeDropdown}>Payroll Configuration</NavLink>
+    <NavLink to="/v1/pay/admin/tax-slab-setup" className="navbar-link" onClick={closeDropdown}>Tax Slab Setup</NavLink>
+    <NavLink to="/v1/pay/admin/import-tools" className="navbar-link" onClick={closeDropdown}>Import Tools</NavLink>
+    <NavLink to="/v1/pay/admin/document-management" className="navbar-link" onClick={closeDropdown}>Document Management</NavLink>
+    <NavLink to="/v1/pay/admin/audit-logs" className="navbar-link" onClick={closeDropdown}>Audit Logs</NavLink>
   </DropdownSection>
 )}
 

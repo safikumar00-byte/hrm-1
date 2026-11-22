@@ -2,20 +2,21 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './TopBar.css';
 import { FaBell } from 'react-icons/fa';
+import { Menu } from 'lucide-react';
 import { fetchProfile } from '../api/services';
 import { getToken } from '../utils/auth';
 import { BASE_URL } from '../api/frontend';
 
 const pages = [
-  { name: 'Home', path: '/home' },
-  { name: 'Profile', path: '/profile/profile' },
-  { name: 'Onboard Dashboard', path: '/employeehub/dashboard' },
-  { name: 'Assets Dashboard', path: '/assets/dashboard' },
-  { name: 'Attendance Daily', path: '/attendance/daily' },
-  { name: 'Leaves Apply', path: '/leaves/apply' },
+  { name: 'Home', path: '/v1/home' },
+  { name: 'Profile', path: '/v1/profile/profile' },
+  { name: 'Onboard Dashboard', path: '/v1/employeehub/dashboard' },
+  { name: 'Assets Dashboard', path: '/v1/assets/dashboard' },
+  { name: 'Attendance Daily', path: '/v1/attendance/daily' },
+  { name: 'Leaves Apply', path: '/v1/leaves/apply' },
 ];
 
-const TopBar = () => {
+const TopBar = ({ onOpenMobileMenu }) => {
   const [time, setTime] = useState(new Date());
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredPages, setFilteredPages] = useState([]);
@@ -92,7 +93,7 @@ const TopBar = () => {
     // window.location.href = `https://login.microsoftonline.com/common/oauth2/v2.0/logout?post_logout_redirect_uri=${postLogoutRedirectUri}`;
     navigate('/login');
   };
-  
+
 
   const renderAvatar = () => {
     if (profile?.profileImageUrl && !imageError) {
@@ -102,6 +103,7 @@ const TopBar = () => {
           style={{ width: '40px', height: '40px' }}
           src={profile.profileImageUrl}
           alt="Avatar"
+          loading="lazy"
           onError={() => setImageError(true)}
         />
       );
@@ -132,6 +134,15 @@ const TopBar = () => {
   return (
     <div className="topbar">
       <div className="topbar-left">
+        <button
+          type="button"
+          className="topbar-mobile-menu-btn"
+          onClick={onOpenMobileMenu}
+          aria-label="Open navigation menu"
+        >
+          <Menu size={22} color="#FFFFFF" />
+        </button>
+
         <input
           ref={searchRef}
           type="text"
@@ -160,49 +171,36 @@ const TopBar = () => {
         <button
           type="button"
           onClick={() => navigate('/v2/home')}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '6px',
-            padding: '7px 14px',
-            borderRadius: '8px',
-            backgroundColor: '#60F61B',
-            color: '#21093D',
-            fontWeight: 'bold',
-            fontSize: '12px',
-            border: 'none',
-            cursor: 'pointer',
-            boxShadow: '0 2px 10px rgba(96, 246, 27, 0.35)',
-            transition: 'transform 0.15s ease',
-          }}
-          onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.03)')}
-          onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+          className="topbar-v2-btn"
         >
-          <span>✨ Modern Theme (v2)</span>
+          <span className="topbar-v2-label-full">✨ Modern Theme (v2)</span>
+          <span className="topbar-v2-label-short">✨ v2</span>
         </button>
 
-        <div className="topbar-time flex flex-col items-end">
-          <p className="text-lg">{time.toDateString()}</p>
-          <p>{time.toLocaleTimeString()}</p>
+        <div className="topbar-time flex flex-col items-end leading-tight shrink-0">
+          <p className="text-xs font-semibold text-white/95 m-0">{time.toDateString()}</p>
+          <p className="text-[11px] font-mono text-[#60F61B] font-bold m-0 mt-0.5">{time.toLocaleTimeString()}</p>
         </div>
 
         <div className="flex items-center" style={{ gap: '12px' }}>
           <button
             type="button"
+            className="topbar-notif-btn"
             style={{
               display: 'flex',
               alignItems: 'center',
-              padding: '10px',
-              width: '40px',
-              height: '40px',
+              padding: '8px',
+              width: '36px',
+              height: '36px',
               border: '1px solid #C3B7FF',
               borderRadius: '8px',
               backgroundColor: 'transparent',
               cursor: 'pointer',
+              flexShrink: 0,
             }}
             aria-label="Notifications"
           >
-            <FaBell size={24} color="#C3B7FF" />
+            <FaBell size={20} color="#C3B7FF" />
           </button>
 
           <div
@@ -216,7 +214,7 @@ const TopBar = () => {
                 {profile?.fullName || 'Loading...'}
               </h1>
               <p className="text-sm text-gray-300">
-                {profile?.position || ''}, {profile?.department || ''}
+                {profile?.position || ''}
               </p>
             </div>
           </div>

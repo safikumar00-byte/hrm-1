@@ -30,7 +30,7 @@ function StatusSummaryCard() {
     <div className="summary_card statussummary_wrapper">
       <div className="statussummary_content">
         <div className="statussummary_title">
-          <h2>⏰ Time Tracker</h2>
+          <h2 style={{ marginBottom: '0px' }}>⏰ Time Tracker</h2>
         </div>
 
         <div className="statussummary_duration-wrapper">
@@ -53,23 +53,23 @@ function StatusSummaryCard() {
           onClockIn={handleClockInWithRefresh}
           onClockOut={handleClockOutWithRefresh}
         />
-         <hr />
-         <div className="weekly_summary">
-  <div className="weekly_summary_details">
-    <span>This Week</span>
-    <span>{weeklySummaries?.thisWeek?.hours != null ? formatTotalHours(weeklySummaries.thisWeek.hours) : '-'}</span>
-  </div>
-  
-  <div className="weekly_summary_details">
-    <span>Last Week</span>
-    <span>{weeklySummaries?.lastWeek?.hours != null ? formatTotalHours(weeklySummaries.lastWeek.hours) : '-'}</span>
-  </div>
-  {/* <div className="weekly_summary_details">
+
+        <div className="weekly_summary">
+          <div className="weekly_summary_details">
+            <span>This Week</span>
+            <span>{weeklySummaries?.thisWeek?.hours != null ? formatTotalHours(weeklySummaries.thisWeek.hours) : '-'}</span>
+          </div>
+
+          <div className="weekly_summary_details">
+            <span>Last Week</span>
+            <span>{weeklySummaries?.lastWeek?.hours != null ? formatTotalHours(weeklySummaries.lastWeek.hours) : '-'}</span>
+          </div>
+          {/* <div className="weekly_summary_details">
     <span>{weeklySummaries?.lastWeek?.range ?? '-'}</span>
   </div> */}
-</div>
+        </div>
       </div>
-    </div>
+    </div >
   );
 }
 

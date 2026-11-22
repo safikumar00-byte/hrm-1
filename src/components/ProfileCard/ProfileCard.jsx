@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import './ProfileCard.css';
 import { fetchProfile } from '../../api/services';
-import { getToken} from '../../utils/auth'
+import { getToken } from '../../utils/auth';
+import { Skeleton } from '../skeletons/Skeleton';
 
 function ProfileCard({ user }) {
   const [profileData, setProfileData] = useState(user || null);
@@ -56,6 +57,7 @@ function ProfileCard({ user }) {
         <img
           src={displayData.profileImageUrl}
           alt="Profile"
+          loading="lazy"
           onError={() => setImageError(true)}
         />
       );
@@ -85,7 +87,26 @@ function ProfileCard({ user }) {
   };
   
 
-  if (loading) return <div className="profile_card">Loading profile...</div>;
+  if (loading) {
+    return (
+      <div className="profile_card" style={{ minHeight: '270px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+        <div style={{ display: 'flex', gap: '14px', alignItems: 'center' }}>
+          <Skeleton width="54px" height="54px" radius="50%" />
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', flex: 1 }}>
+            <Skeleton width="60%" height="16px" />
+            <Skeleton width="45%" height="11px" />
+            <Skeleton width="30%" height="10px" />
+          </div>
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', margin: '14px 0' }}>
+          <Skeleton width="90%" height="11px" />
+          <Skeleton width="75%" height="11px" />
+          <Skeleton width="65%" height="11px" />
+        </div>
+        <Skeleton width="100%" height="34px" radius="6px" />
+      </div>
+    );
+  }
   if (error) return <div className="profile_card error">{error}</div>;
 
   return (

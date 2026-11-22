@@ -16,13 +16,13 @@ function LeaveNavbar() {
       <nav className="layouts-navbar">
 
         <NavLink
-          to="/leaves/dashboard"
+          to="/v1/leaves/dashboard"
           className={({ isActive }) => `layouts-tab ${isActive ? 'active' : ''}`}
         >
          <LayoutDashboard size={16} /> Leave Dashboard
         </NavLink>
         <NavLink
-          to="/leaves/apply"
+          to="/v1/leaves/apply"
           className={({ isActive }) => `layouts-tab ${isActive ? 'active' : ''}`}
         >
          <SendIcon size={16} /> Apply Leave
@@ -30,7 +30,7 @@ function LeaveNavbar() {
 
         {isManagerOrAdmin && (
           <NavLink
-            to="/leaves/management"
+            to="/v1/leaves/management"
             className={({ isActive }) => `layouts-tab ${isActive ? 'active' : ''}`}
           >
            <MenuSquare size={16} /> Leave Management

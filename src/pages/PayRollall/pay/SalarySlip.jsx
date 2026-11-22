@@ -54,7 +54,12 @@ const SalarySlip = () => {
       setLoading(true);
       try {
         const payroll = await fetchSelfPayroll(selectedMonth, selectedYear);
-        setData(payroll);
+        const slip = Array.isArray(payroll)
+          ? payroll[0]
+          : Array.isArray(payroll?.data)
+          ? payroll.data[0]
+          : payroll;
+        setData(slip);
       } catch (err) {
         console.error('Error fetching payroll:', err.message);
         setData(null);
@@ -115,7 +120,7 @@ const SalarySlip = () => {
               <p>Visakhapatnam, Andhra Pradesh 530045</p>
             </div>
             <div>
-              <img src={logo} alt="Company Logo" className="company-logo" />
+              <img src={logo} alt="Company Logo" className="company-logo" loading="lazy" />
             </div>
           </div>
 

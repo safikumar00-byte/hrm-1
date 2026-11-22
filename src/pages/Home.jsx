@@ -89,7 +89,7 @@ function Home() {
     <div className="home_wrapper">
       <div className="home_main-layout">
         <div className="home_cards-grid">
-          <div className="flex first-row">
+          <div className="first-row">
             <ProfileCard />
             <SummaryCard />
             <AttendanceCard />
@@ -106,7 +106,7 @@ function Home() {
               <p style={{ fontSize: '12px', color: '#71677D', margin: 0 }}>Frequently used portals and employee tools</p>
             </div>
             <div className="quick-links-grid">
-              
+
               {renderCard({
                 name: 'Timesheet',
                 icon: <FaRegClock />,
@@ -117,7 +117,7 @@ function Home() {
                 icon: <FaUserCog />,
                 url: '/profile',
               })}
-              
+
               {renderCard({
                 name: 'Assets',
                 icon: <FaBoxOpen />,
@@ -127,7 +127,7 @@ function Home() {
                 name: 'Payroll',
                 icon: <FaMoneyCheckAlt />,
                 url: '/pay/pay',
-              })} 
+              })}
             </div>
           </div>
 

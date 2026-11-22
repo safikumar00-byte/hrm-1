@@ -22,7 +22,7 @@ export function ModernTopBar({ onOpenMobileMenu }) {
   const roles = JSON.parse(localStorage.getItem('role') || '["Admin"]');
 
   return (
-    <header className="h-16 bg-gradient-to-b from-white to-gray-100 dark:from-gray-800 dark:to-gray-900 border-b border-border flex items-center justify-between px-4 sm:px-6 sticky top-0 z-30 shadow-2xs shrink-0 transition-colors">
+    <header className="h-16 bg-card border-b border-border flex items-center justify-between px-4 sm:px-6 sticky top-0 z-30 shadow-2xs shrink-0 transition-colors">
       {/* Left: Mobile Toggle & Global Search */}
       <div className="flex items-center gap-3">
         <button
@@ -38,7 +38,7 @@ export function ModernTopBar({ onOpenMobileMenu }) {
           <Search className="w-4 h-4 absolute left-3 top-2.5 text-muted-foreground pointer-events-none" />
           <Input
             placeholder="Search employees, payroll, policies..."
-            className="pl-9 h-9 text-xs bg-secondary/50 focus:bg-gradient-to-b from-white to-gray-100 dark:from-gray-800 dark:to-gray-900 border-border/80 rounded-[var(--radius)]"
+            className="pl-9 h-9 text-xs bg-secondary/50 focus:bg-card border-border/80 rounded-[var(--radius)]"
           />
         </div>
       </div>
@@ -49,7 +49,7 @@ export function ModernTopBar({ onOpenMobileMenu }) {
         <Button
           variant="outline"
           size="sm"
-          onClick={() => navigate('/home')}
+          onClick={() => navigate('/v1/home')}
           className="hidden sm:inline-flex text-xs h-8 gap-1.5 font-medium border-border hover:bg-secondary"
         >
           <ExternalLink className="w-3.5 h-3.5 text-primary" />

@@ -5,6 +5,7 @@ import DetailsModal from '../../components/Modals/DetailsModal';
 import { SearchIcon } from 'lucide-react';
 import StatusBadge from '../../components/common/StatusBadge';
 import { getToken } from '../../utils/auth';
+import { RequestsSkeleton } from '../../components/skeletons/TeamsAndRequestsSkeleton';
 
 function HRRequests() {
   const [requests, setRequests] = useState([]);
@@ -120,51 +121,53 @@ function HRRequests() {
       </div>
 
       {loading ? (
-        <p>Loading requests...</p>
+        <RequestsSkeleton />
       ) : error ? (
         <p className="error">{error}</p>
       ) : filteredRequests.length === 0 ? (
         <p>No HR requests found.</p>
       ) : (
         <>
-          <table className="table">
-            <thead>
-              <tr>
-                <th>Request ID</th>
-                <th>Employee Name</th>
-                <th>Category</th>
-                <th>Status</th>
-                <th>Assigned To</th>
-                <th>Raised On</th>
-              </tr>
-            </thead>
-            <tbody>
-              {paginatedRequests.map((req) => (
-                <tr key={req.requestId}>
-                  <td>
-                    <button
-                      className="link-button"
-                      onClick={() => openDetailsModal(req)}
-                      title="View request details"
-                    >
-                      {req.requestId}
-                    </button>
-                  </td>
-                  <td>{req.requestedByFullName} ({req.requestedBy})</td>
-                  <td>{req.category}</td>
-                  <td><StatusBadge status={req.status} /></td>
-                  <td>{req.assignedToFullName || 'Unassigned'}</td>
-                  <td>
-                    {new Date(req.createdAt).toLocaleDateString('en-US', {
-                      day: '2-digit',
-                      month: 'short',
-                      year: 'numeric',
-                    })}
-                  </td>
+          <div className="hr-table-responsive">
+            <table className="table">
+              <thead>
+                <tr>
+                  <th>Request ID</th>
+                  <th>Employee Name</th>
+                  <th>Category</th>
+                  <th>Status</th>
+                  <th>Assigned To</th>
+                  <th>Raised On</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {paginatedRequests.map((req, rIdx) => (
+                  <tr key={req.requestId || req.id || rIdx}>
+                    <td>
+                      <button
+                        className="link-button"
+                        onClick={() => openDetailsModal(req)}
+                        title="View request details"
+                      >
+                        {req.requestId}
+                      </button>
+                    </td>
+                    <td>{req.requestedByFullName} ({req.requestedBy})</td>
+                    <td>{req.category}</td>
+                    <td><StatusBadge status={req.status} /></td>
+                    <td>{req.assignedToFullName || 'Unassigned'}</td>
+                    <td>
+                      {new Date(req.createdAt).toLocaleDateString('en-US', {
+                        day: '2-digit',
+                        month: 'short',
+                        year: 'numeric',
+                      })}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
 
           <div className="pagination-controls">
             <button onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))} disabled={currentPage === 1}>Prev</button>

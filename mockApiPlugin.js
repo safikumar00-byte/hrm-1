@@ -437,26 +437,55 @@ export function mockApiPlugin() {
         }
         if (url.includes('/payroll/employee') || url.includes('/payroll/self')) {
           return sendJson({
-            data: [
-              {
-                id: 'PS-2026-10-EMP001',
-                employeeId: 'EMP001',
-                month: 'October',
-                year: 2026,
-                basic: 9000,
-                hra: 3600,
-                allowances: 2400,
-                deductions: 1500,
-                netPay: 13500,
-                status: 'Paid',
-              },
+            name: 'Admin User',
+            employeeId: 'EMP001',
+            designation: 'Lead HR Architect / Platform Admin',
+            dateOfJoining: '2024-01-15',
+            payPeriod: 'October 2026',
+            lop: 0,
+            grossSalary: 15000,
+            netPay: 13500,
+            amountInWords: 'Thirteen Thousand Five Hundred Only',
+            earnings: [
+              { type: 'Basic Salary', amount: 9000 },
+              { type: 'House Rent Allowance (HRA)', amount: 3600 },
+              { type: 'Special Allowance', amount: 2400 },
+            ],
+            deductions: [
+              { type: 'Provident Fund (PF)', amount: 1080 },
+              { type: 'Professional Tax', amount: 200 },
+              { type: 'TDS / Income Tax', amount: 220 },
+            ],
+          });
+        }
+        if (url.includes('/payslips/months')) {
+          return sendJson({
+            months: [
+              { month: 10, year: 2026 },
+              { month: 9, year: 2026 },
+              { month: 8, year: 2026 },
+              { month: 7, year: 2026 },
+            ],
+          });
+        }
+        if (url.includes('/payslips/download') || url.includes('/payslips/view')) {
+          res.setHeader('Content-Type', 'application/pdf');
+          res.setHeader('Content-Disposition', 'attachment; filename="payslip.pdf"');
+          return res.end(Buffer.from('%PDF-1.4\n1 0 obj\n<< /Title (Payslip) >>\nendobj\ntrailer\n<< >>\n%%EOF'));
+        }
+        if (url.includes('/payslips/list')) {
+          return sendJson({
+            payslips: [
+              { id: 1, month: 10, year: 2026, employeeId: 'EMP001', employeeName: 'Admin User', gross: 15000, deductions: 1500, netPay: 13500, lopDays: 0, status: 'Paid', processedDate: '2026-10-31' },
+              { id: 2, month: 9, year: 2026, employeeId: 'EMP001', employeeName: 'Admin User', gross: 15000, deductions: 1500, netPay: 13500, lopDays: 0, status: 'Paid', processedDate: '2026-09-30' },
+              { id: 3, month: 8, year: 2026, employeeId: 'EMP001', employeeName: 'Admin User', gross: 15000, deductions: 1500, netPay: 13500, lopDays: 0, status: 'Paid', processedDate: '2026-08-31' },
             ],
           });
         }
         if (url.includes('/payslips')) {
           return sendJson([
-            { id: 1, month: 'October 2026', fileName: 'Payslip_Oct_2026.pdf', amount: 13500, date: '2026-10-31' },
-            { id: 2, month: 'September 2026', fileName: 'Payslip_Sep_2026.pdf', amount: 13500, date: '2026-09-30' },
+            { id: 1, month: 10, year: 2026, fileName: 'Payslip_Oct_2026.pdf', amount: 13500, date: '2026-10-31' },
+            { id: 2, month: 9, year: 2026, fileName: 'Payslip_Sep_2026.pdf', amount: 13500, date: '2026-09-30' },
           ]);
         }
         if (url.includes('/pay-components')) {
@@ -469,7 +498,22 @@ export function mockApiPlugin() {
         }
         if (url.includes('/salary')) {
           return sendJson([
-            { id: 1, templateName: 'Senior Leadership Package', ctc: 180000, basic: 108000, hra: 43200, specialAllowance: 28800 },
+            {
+              id: 1,
+              templateName: 'Senior Leadership Package',
+              ctc: 180000,
+              basic: 108000,
+              hra: 43200,
+              specialAllowance: 28800,
+              medicalAllowance: 5000,
+              conveyanceAllowance: 8000,
+              leavetravelAssistance: 10000,
+              phoneinternetReimbursment: 3000,
+              foodReimbursment: 4000,
+              pf: 12960,
+              variablePay: 20000,
+              effectiveFrom: '2024-01-15',
+            },
           ]);
         }
         if (url.includes('/tax/slabs') || url.includes('/tax/config')) {

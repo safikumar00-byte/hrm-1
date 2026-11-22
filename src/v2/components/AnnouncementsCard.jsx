@@ -31,7 +31,7 @@ export function AnnouncementsCard() {
         {announcements.map((item) => (
           <div
             key={item.id}
-            className="p-3.5 rounded-[var(--radius)] border border-border bg-gradient-to-b from-white to-gray-100 dark:from-gray-800 dark:to-gray-900/60 hover:bg-secondary/40 transition-all hover:border-primary/40 group cursor-pointer"
+            className="p-3.5 rounded-[var(--radius)] border border-border bg-card hover:bg-secondary/40 transition-all hover:border-primary/40 group cursor-pointer"
           >
             <div className="flex items-center justify-between mb-1">
               <h4 className="text-sm font-semibold text-card-foreground group-hover:text-primary transition-colors">

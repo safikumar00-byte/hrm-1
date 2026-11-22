@@ -58,7 +58,7 @@ export function AttendanceChartCard({ attendanceData }) {
   };
 
   return (
-    <Card className="flex flex-col justify-between border border-border bg-gradient-to-b from-white to-gray-100 dark:from-gray-800 dark:to-gray-900 shadow-xs rounded-[var(--radius)] h-full overflow-hidden">
+    <Card className="flex flex-col justify-between border border-border shadow-xs rounded-[var(--radius)] h-full overflow-hidden">
       <div>
         {/* Header with Title and Total Hours Badge */}
         <CardHeader className="pb-2 pt-5 px-5 sm:px-6">

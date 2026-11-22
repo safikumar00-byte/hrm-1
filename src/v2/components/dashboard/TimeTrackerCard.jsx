@@ -25,7 +25,7 @@ export function TimeTrackerCard({
   const progressPercent = Math.min(100, Math.round((seconds / shiftTargetSeconds) * 100));
 
   return (
-    <Card className="flex flex-col justify-between border border-border bg-gradient-to-b from-white to-gray-100 dark:from-gray-800 dark:to-gray-900 shadow-xs rounded-[var(--radius)] h-full overflow-hidden">
+    <Card className="flex flex-col justify-between border border-border shadow-xs rounded-[var(--radius)] h-full overflow-hidden">
       <div>
         {/* Header: Title and Status Badge */}
         <CardHeader className="pb-3 pt-5 px-5 sm:px-6">

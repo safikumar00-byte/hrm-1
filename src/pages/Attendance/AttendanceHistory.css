@@ -9,7 +9,8 @@
 }
 
 /* Alerts */
-.error-message, .loading-message {
+.error-message,
+.loading-message {
   color: #a10000;
   border: 1px solid #a10000;
   border-radius: 8px;
@@ -19,7 +20,8 @@
   text-align: center;
 }
 
-.anomaly-alert, .low-attendance-alert {
+.anomaly-alert,
+.low-attendance-alert {
   background-color: #fff4e5;
   border: 1px solid #f39c12;
   border-radius: 8px;
@@ -52,12 +54,14 @@
 .kpi-card {
   background: #ffffff;
   border-radius: 12px;
+  border: 1px solid #E5E0EA;
   padding: 1rem 1.25rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 4px 12px -2px rgba(33, 9, 61, 0.08);
   text-align: center;
   transition: box-shadow 0.3s ease;
   cursor: default;
 }
+
 .kpi-card:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
 }
@@ -88,7 +92,8 @@
   border-radius: 16px;
   padding: 1rem;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  min-height: 340px; /* Enough height for charts */
+  min-height: 340px;
+  /* Enough height for charts */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -112,7 +117,7 @@
   border-radius: 16px;
   padding: 1rem;
   margin-bottom: 1.5rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Export & Print Buttons */
@@ -124,18 +129,20 @@
 }
 
 .export-print-controls button {
-  background-color: #4f46e5;
+  background-color: #21093D;
   border: none;
   color: white;
-  padding: 0.5rem 1.25rem;
-  border-radius: 6px;
+  padding: 8px 16px;
+  border-radius: 8px;
   cursor: pointer;
   font-weight: 600;
-  transition: background-color 0.3s ease;
+  font-size: 13px;
+  box-shadow: 0 2px 6px rgba(33, 9, 61, 0.15);
+  transition: background-color 0.2s ease;
 }
 
 .export-print-controls button:hover {
-  background-color: #3730a3;
+  background-color: #381661;
 }
 
 /* Team Overview Section */
@@ -144,7 +151,7 @@
   border-radius: 16px;
   padding: 1rem 1.5rem;
   margin-bottom: 2rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
 
 /* Attendance Table */
@@ -172,9 +179,10 @@
 }
 
 .attendance-table th {
-  background-color: #f0f2f5;
-  color: #444;
+  background-color: #F8FAFC;
+  color: #6B7280;
   font-weight: 600;
+  font-size: 13px;
 }
 
 .attendance-table td {
@@ -224,7 +232,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.5);
   z-index: 9999;
   display: flex;
   justify-content: center;
@@ -239,7 +247,7 @@
   max-height: 90vh;
   overflow-y: auto;
   padding: 2rem;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
   position: relative;
 }
 
@@ -266,6 +274,7 @@
   .attendance-history-container {
     padding: 1rem 1.5rem;
   }
+
   .attendance-charts {
     grid-template-columns: 1fr 1fr;
   }
@@ -310,14 +319,14 @@
   background-color: #fff;
   border-radius: 12px;
   padding: 1rem 1.25rem;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
   text-align: center;
   transition: box-shadow 0.3s ease;
   cursor: default;
 }
 
 .kpi-card:hover {
-  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
 .kpi-card h4 {
@@ -354,7 +363,7 @@
 .comparison-card {
   background: #fff;
   border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   padding: 1.5rem 1.75rem;
   flex: 1 1 300px;
   min-width: 280px;
@@ -384,4 +393,3 @@
   border-radius: 12px;
   padding: 1rem;
 }
-

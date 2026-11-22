@@ -13,14 +13,14 @@ const TeamNavbar = () => {
     <div className="layouts-container">
       <nav className="layouts-navbar">
       <NavLink
-          to="/team/myteam"
+          to="/v1/team/myteam"
           className={({ isActive }) => `layouts-tab ${isActive ? 'active' : ''}`}
         >
           <UserCog size={16} /> My Team
         </NavLink>
       {!isRegularEmployee && (
          <NavLink
-         to="/team/allteams"
+         to="/v1/team/allteams"
          className={({ isActive }) => `layouts-tab ${isActive ? 'active' : ''}`}
          >
          <Users size={16} /> All Teams

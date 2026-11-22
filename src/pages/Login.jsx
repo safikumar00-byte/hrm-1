@@ -52,7 +52,7 @@ function Login() {
     localStorage.setItem('token', mockToken);
     localStorage.setItem('role', JSON.stringify(roles));
 
-    window.location.href = '/home';
+    window.location.href = '/v1/home';
   };
 
   const handleLogin = async () => {
@@ -82,7 +82,7 @@ function Login() {
         if (response.onboardingStatus === 'Pending' || response.onboardingStatus === 'InProgress') {
           navigate('/onboarding/personal-info');
         } else {
-          navigate('/home');
+          navigate('/v1/home');
         }
       } else {
         alert('Invalid credentials');

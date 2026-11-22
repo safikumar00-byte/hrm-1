@@ -36,8 +36,8 @@ function LeaveTable({ leaves, getStatusBadge, currentPage, rowsPerPage, onPageCh
                   <td>{formatDate(leave.endDate)}</td>
                   <td>{leave.numberOfDays}</td>
                   <td>
-                  <StatusBadge status={leave.status} />
-                </td>
+                    <StatusBadge status={leave.status} />
+                  </td>
                   <td>{formatDate(leave.appliedDate)}</td>
                 </tr>
               );
@@ -46,12 +46,12 @@ function LeaveTable({ leaves, getStatusBadge, currentPage, rowsPerPage, onPageCh
         </table>
       </div>
 
-      <Pagination
+      {/* <Pagination
         currentPage={currentPage}
         totalItems={leaves.length}
         rowsPerPage={rowsPerPage}
         onPageChange={onPageChange}
-      />
+      /> */}
     </>
   );
 }

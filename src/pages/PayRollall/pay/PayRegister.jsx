@@ -22,10 +22,11 @@ const PayRegister = () => {
     const loadData = async () => {
       try {
         const data = await fetchPayregister(token);
-        const sorted = data.sort((a, b) =>
-          b.year !== a.year ? b.year - a.year : b.month - a.month
+        const list = Array.isArray(data) ? [...data] : [];
+        list.sort((a, b) =>
+          Number(b.year) !== Number(a.year) ? Number(b.year) - Number(a.year) : Number(b.month) - Number(a.month)
         );
-        setRegisterData(sorted);
+        setRegisterData(list);
         const profileData = await fetchProfile(token);
         setProfile(profileData);
       } catch (err) {
@@ -38,8 +39,14 @@ const PayRegister = () => {
     loadData();
   }, []);
 
-  const getMonthName = (month) =>
-    new Date(2000, month - 1).toLocaleString('default', { month: 'long' });
+  const getMonthName = (month) => {
+    if (!month && month !== 0) return 'Unknown';
+    const num = Number(month);
+    if (!isNaN(num) && num >= 1 && num <= 12) {
+      return new Date(2000, num - 1).toLocaleString('default', { month: 'long' });
+    }
+    return String(month);
+  };
 
   return (
     <div className="pay-page">
@@ -84,13 +91,13 @@ const PayRegister = () => {
           </thead>
           <tbody>
             {registerData.map((row, idx) => (
-              <tr key={idx}>
-                <td>{`${getMonthName(row.month)} ${row.year}`}</td>
-                <td>₹{row.gross.toLocaleString()}</td>
-                <td>₹{row.deductions.toLocaleString()}</td>
-                <td>₹{row.netPay.toLocaleString()}</td>
-                <td>{row.lopDays}</td>
-                <td>{row.status}</td>
+              <tr key={row.id || idx}>
+                <td>{`${getMonthName(row.month)} ${row.year || ''}`}</td>
+                <td>₹{(row.gross ?? 0).toLocaleString()}</td>
+                <td>₹{(row.deductions ?? 0).toLocaleString()}</td>
+                <td>₹{(row.netPay ?? 0).toLocaleString()}</td>
+                <td>{row.lopDays ?? 0}</td>
+                <td>{row.status || 'Processed'}</td>
                 <td>{formatDate(row.processedDate)}</td>
               </tr>
             ))}

@@ -87,32 +87,30 @@
   min-width: 900px;
 }
 
-.members-table thead tr {
-  background-color: #d9ead3;
-  color: #2f6627;
-  font-weight: 700;
-  font-size: 1rem;
+.members-table thead tr,
+.light-table-head th {
+  background-color: #F8FAFC !important;
+  color: #6B7280 !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
   user-select: none;
 }
 
 .members-table th,
 .members-table td {
-  padding: 14px 20px;
+  padding: 12px 16px;
   text-align: left;
-  border-bottom: 1px solid #e2e8e5;
+  border-bottom: 1px solid #E5E0EA;
+  border-top: none;
+  border-left: none;
+  border-right: none;
   vertical-align: middle;
-  font-size: 0.95rem;
-  color: #34495e;
+  font-size: 13px;
+  color: #21093D;
 }
 
-.light-table-head th {
-  background-color: #F8FAAC !important;
-}
-
-.members-table tbody tr:hover {
-  background-color: #e6f1df;
-  transition: background-color 0.2s ease;
-  cursor: default;
+.members-table tbody tr:hover td {
+  background-color: #F8FAFC;
 }
 
 /* Member avatar and name */
@@ -292,15 +290,16 @@
 .Ttop-bar {
   display: flex;
   background-color: #fff;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid #E5E0EA;
+  box-shadow: 0 4px 12px -2px rgba(33, 9, 61, 0.08);
+  padding: 16px 20px;
 
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 12px;
 }
 
 .Tleft-group,
@@ -316,25 +315,40 @@
 
 .Tinput-field,
 .Tsearch-field {
-  padding: 8px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 13px;
+  border: 1px solid #E5E0EA;
+  border-radius: 8px;
   min-width: 200px;
+  color: #21093D;
+  background-color: #FFFFFF;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.Tinput-field:focus,
+.Tsearch-field:focus {
+  border-color: #60F61B;
+  box-shadow: 0 0 0 2px rgba(96, 246, 27, 0.2);
 }
 
 .Tcreate-btn {
-  padding: 8px 12px;
-  background-color: #00a229;
+  padding: 8px 16px;
+  background-color: #21093D;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 13px;
   cursor: pointer;
   margin-top: 0px;
+  box-shadow: 0 2px 6px rgba(33, 9, 61, 0.15);
+  transition: background-color 0.2s ease, transform 0.15s ease;
 }
 
 .Tcreate-btn:hover {
-  background-color: #00de38;
+  background-color: #381661;
+  transform: translateY(-1px);
 }
 
 .Tcreate-btn:disabled {

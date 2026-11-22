@@ -1,8 +1,8 @@
 .onboard-dashboard {
-    padding: 20px;
-    margin-left: 3%;
-    margin-top: -2%;
-  }
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
   
   .summary-cards {
     display: flex;

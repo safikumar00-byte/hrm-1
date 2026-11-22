@@ -185,7 +185,7 @@ const BasicDetails = () => {
   const renderAvatar = () => {
     const hasImage = profileImage && !imageError;
     if (hasImage) {
-      return <img src={profileImage} alt="Profile" className="profile-image" onError={() => setImageError(true)} />;
+      return <img src={profileImage} alt="Profile" className="profile-image" loading="lazy" onError={() => setImageError(true)} />;
     }
 
     const initials = (() => {

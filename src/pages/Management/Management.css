@@ -16,11 +16,13 @@
   
   .management-section {
     display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding: 20px;
-  background-color: white;
-  border-radius: 12px;
+    flex-direction: column;
+    gap: 20px;
+    padding: 24px;
+    background-color: white;
+    border-radius: 12px;
+    border: 1px solid #E5E0EA;
+    box-shadow: 0 4px 12px -2px rgba(33, 9, 61, 0.08);
   }
   
   .management-section h2 {
@@ -102,26 +104,33 @@
   .form-group input[type="time"] {
     flex-grow: 1;
     padding: 10px 14px;
-    font-size: 15px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    transition: border-color 0.2s ease;
+    font-size: 14px;
+    border: 1px solid #E5E0EA;
+    border-radius: 8px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
     min-width: 160px;
   }
   
   .form-group input:focus {
-    border-color: #1e2a38;
+    border-color: #60F61B;
     outline: none;
+    box-shadow: 0 0 0 3px rgba(96, 246, 27, 0.2);
   }
   
   .form-group button {
     padding: 10px 20px;
     border: none;
+    background-color: #21093D;
     color: white;
-    font-weight: 700;
-    border-radius: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.2s ease;
+  }
+
+  .form-group button:hover {
+    background-color: #381661;
   }
   
   .management-content::-webkit-scrollbar,
@@ -231,13 +240,21 @@
 }
 
 .modal-actions button:first-child {
-  background-color: #5a8ccc;
+  background-color: #21093D;
   color: white;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.modal-actions button:first-child:hover {
+  background-color: #381661;
 }
 
 .modal-actions button:last-child {
-  background-color: #e2e8f0;
-  color: #1a202c;
+  background-color: #F0EDF4;
+  color: #21093D;
+  border-radius: 8px;
+  border: 1px solid #E5E0EA;
 }
 
 /* Allow better spacing and flow in form group */

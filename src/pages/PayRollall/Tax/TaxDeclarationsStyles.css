@@ -12,10 +12,11 @@
   }
   
   .td-form {
-    
-    padding: 1.5rem;
-    border-radius: 6px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    padding: 24px;
+    border-radius: 12px;
+    background: #FFFFFF;
+    border: 1px solid #E5E0EA;
+    box-shadow: 0 4px 12px -2px rgba(33, 9, 61, 0.08);
   }
   
   .td-section {
@@ -37,17 +38,26 @@
     font-weight: 500;
     margin-bottom: 0.3rem;
     font-size: 0.9rem;
+    color: #21093D;
   }
   
   .td-input-group input,
   .td-input-group select {
-    padding: 0.5rem;
-    border-radius: 4px;
-    border: 1px solid #ccc;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid #E5E0EA;
+    outline: none;
+    transition: all 0.2s ease;
+  }
+
+  .td-input-group input:focus,
+  .td-input-group select:focus {
+    border-color: #60F61B;
+    box-shadow: 0 0 0 3px rgba(96, 246, 27, 0.2);
   }
   
   .td-error {
-    color: red;
+    color: #EF4444;
     margin-bottom: 1rem;
     text-align: center;
   }
@@ -57,12 +67,19 @@
   }
   
   .td-btn {
-    background-color: #0078d4;
+    background-color: #21093D;
     color: white;
-    padding: 0.6rem 1.2rem;
+    padding: 10px 20px;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
     cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+
+  .td-btn:hover {
+    background-color: #381661;
   }
   
   .td-btn:disabled {

@@ -30,7 +30,8 @@ const ReimbursementSlip = () => {
     const fetchSlips = async () => {
       try {
         const allClaims = await getMyReimbursements(token);
-        const approvedOnly = allClaims.filter(c => c.Status === 'Approved');
+        const claimsList = Array.isArray(allClaims) ? allClaims : (allClaims?.data || []);
+        const approvedOnly = claimsList.filter(c => c && (c.Status === 'Approved' || c.status === 'Approved'));
         setApprovedSlips(approvedOnly);
       } catch (err) {
         setError('Failed to load slips');

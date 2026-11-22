@@ -8,26 +8,26 @@ const OnboardNavbar = () => {
     <div className="layouts-container">
       <nav className="layouts-navbar">
         {/* Dashboard with summaries, reports & charts */}
-        <NavLink to="/employeehub/dashboard" className={({ isActive }) => `layouts-tab ${isActive ? 'active' : ''}`}>
+        <NavLink to="/v1/employeehub/dashboard" className={({ isActive }) => `layouts-tab ${isActive ? 'active' : ''}`}>
         <LayoutDashboard size={16} /> Dashboard
         </NavLink>
         
         {/* Core Employee Actions */}
-        {/* <NavLink to="/employeehub/new-employee" className={({ isActive }) => `layouts-tab ${isActive ? 'active' : ''}`}>
+        <NavLink to="/v1/employeehub/new-employee" className={({ isActive }) => `layouts-tab ${isActive ? 'active' : ''}`}>
           ➕ Add Employee
-        </NavLink> */}
+        </NavLink>
 
-        <NavLink to="/employeehub/progress" className={({ isActive }) => `layouts-tab ${isActive ? 'active' : ''}`}>
+        <NavLink to="/v1/employeehub/progress" className={({ isActive }) => `layouts-tab ${isActive ? 'active' : ''}`}>
         <StepForward size={16} /> Onboarding Progress
         </NavLink>
 
         {/* Offer Letters Management */}
-        {/* <NavLink to="/employeehub/offer-letters" className={({ isActive }) => `layouts-tab ${isActive ? 'active' : ''}`}>
+        {/* <NavLink to="/v1/employeehub/offer-letters" className={({ isActive }) => `layouts-tab ${isActive ? 'active' : ''}`}>
           📄 Offer Letters
         </NavLink> */}
 
         {/* Communication Logs: Email/SMS & notes */}
-        <NavLink to="/employeehub/employeesdata" className={({ isActive }) => `layouts-tab ${isActive ? 'active' : ''}`}>
+        <NavLink to="/v1/employeehub/employeesdata" className={({ isActive }) => `layouts-tab ${isActive ? 'active' : ''}`}>
         <Users size={16} /> Employees
         </NavLink>
 
