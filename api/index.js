@@ -22,6 +22,10 @@ export default function handler(req, res) {
     endpoint += req.url.substring(queryIndex);
   }
 
+  if (!endpoint.startsWith('/api')) {
+    endpoint = '/api' + (endpoint.startsWith('/') ? endpoint : '/' + endpoint);
+  }
+
   req.url = endpoint;
 
   return handleMockApiRequest(req, res, () => {

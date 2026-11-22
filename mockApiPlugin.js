@@ -244,13 +244,16 @@
   ];
 
 export function handleMockApiRequest(req, res, next) {
-    let rawUrl = (req.url || '').split('?')[0];
-    if (!rawUrl.startsWith('/api')) {
-      rawUrl = '/api' + (rawUrl.startsWith('/') ? rawUrl : '/' + rawUrl);
-    }
-    const url = rawUrl;
+    const url = (req.url || '').split('?')[0];
 
-    // /api prefix is normalized
+    if (!url.startsWith('/api')) {
+      if (typeof next === 'function') {
+        return next();
+      }
+      res.statusCode = 404;
+      res.setHeader('Content-Type', 'application/json');
+      return res.end(JSON.stringify({ error: 'Not an API route', url }));
+    }
 
         // Set common response headers
         res.setHeader('Content-Type', 'application/json');
