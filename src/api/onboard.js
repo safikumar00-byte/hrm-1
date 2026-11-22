@@ -1,5 +1,5 @@
 
-import { BASE_URL } from './urls';
+import { BASE_URL, safeJson } from './urls';
 
 export const createEmployee = async (employeeData, token) => {
   try {
@@ -12,12 +12,7 @@ export const createEmployee = async (employeeData, token) => {
       body: JSON.stringify(employeeData),
     });
 
-    if (!res.ok) {
-      const errorData = await res.json();
-      throw new Error(errorData.message || 'Failed to create employee');
-    }
-
-    return await res.json();
+    return await safeJson(res, typeof url !== "undefined" ? url : res.url);
   } catch (error) {
     console.error('Create Employee API error:', error);
     throw error;
@@ -35,12 +30,7 @@ export const getAllonboarding = async (token) => {
       },
     });
 
-    if (!res.ok) {
-      const errorData = await res.json();
-      throw new Error(errorData.message || 'Failed to fetch employees');
-    }
-
-    return await res.json();
+    return await safeJson(res, typeof url !== "undefined" ? url : res.url);
   } catch (error) {
     console.error('Get All Employees API error:', error);
     throw error;

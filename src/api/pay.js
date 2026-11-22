@@ -1,9 +1,9 @@
-import { BASE_URL } from './urls';
-
+import { BASE_URL, safeJson } from './urls';
 
 export const fetchPayrollSummary = async (token) => {
   try {
-    const res = await fetch(`${BASE_URL}/pay`, {
+    const url = `${BASE_URL}/pay`;
+    const res = await fetch(url, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -11,56 +11,41 @@ export const fetchPayrollSummary = async (token) => {
       },
     });
 
-    if (!res.ok) {
-      const errorData = await res.json();
-      throw new Error(errorData.message || 'Failed to fetch payroll summary');
-    }
-
-    const result = await res.json();
-    return Array.isArray(result.data) ? result.data : []; 
+    const result = await safeJson(res, url);
+    return Array.isArray(result?.data) ? result.data : (Array.isArray(result) ? result : []);
   } catch (error) {
     console.error('Fetch Payroll Summary API error:', error);
     return [];
   }
 };
 
-
-
 export const fetchRecentPayslips = async (token) => {
   try {
-    const res = await fetch(`${BASE_URL}/payslips/pdf`, {
+    const url = `${BASE_URL}/payslips/pdf`;
+    const res = await fetch(url, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
 
-    if (!res.ok) {
-      const errorData = await res.json();
-      throw new Error(errorData.message || 'Failed to fetch recent payslips');
-    }
-
-    return await res.json();
+    return await safeJson(res, url);
   } catch (error) {
     console.error('Fetch Recent Payslips API error:', error);
     throw error;
   }
 };
 
-
 export const fetchFAQs = async (token) => {
   try {
-    const response = await fetch(`${BASE_URL}/helpdesk/faqs`, {
+    const url = `${BASE_URL}/helpdesk/faqs`;
+    const response = await fetch(url, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
 
-    if (!response.ok) {
-      throw new Error('Failed to fetch FAQs');
-    }
-
-    return response.json();
+    return await safeJson(response, url);
   } catch (error) {
     console.error('Fetch FAQs API error:', error);
     throw error;
@@ -69,7 +54,8 @@ export const fetchFAQs = async (token) => {
 
 export const submitTicket = async (token, subject) => {
   try {
-    const response = await fetch(`${BASE_URL}/helpdesk/tickets`, {
+    const url = `${BASE_URL}/helpdesk/tickets`;
+    const response = await fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -78,11 +64,7 @@ export const submitTicket = async (token, subject) => {
       body: JSON.stringify({ subject }),
     });
 
-    if (!response.ok) {
-      throw new Error('Failed to submit ticket');
-    }
-
-    return response.json();
+    return await safeJson(response, url);
   } catch (error) {
     console.error('Submit Ticket API error:', error);
     throw error;
@@ -91,27 +73,24 @@ export const submitTicket = async (token, subject) => {
 
 export const fetchTickets = async (token) => {
   try {
-    const response = await fetch(`${BASE_URL}/helpdesk/tickets`, {
+    const url = `${BASE_URL}/helpdesk/tickets`;
+    const response = await fetch(url, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
 
-    if (!response.ok) {
-      throw new Error('Failed to fetch tickets');
-    }
-
-    return response.json();
+    return await safeJson(response, url);
   } catch (error) {
     console.error('Fetch Tickets API error:', error);
     throw error;
   }
 };
+
 export const fetchBankDetails = async (token) => {
-
-
   try {
-    const res = await fetch(`${BASE_URL}/banks/my`, {
+    const url = `${BASE_URL}/banks/my`;
+    const res = await fetch(url, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -119,28 +98,11 @@ export const fetchBankDetails = async (token) => {
       },
     });
 
-
     if (res.status === 404) {
-
       return null;
     }
 
-    if (!res.ok) {
-      const errorData = await res.json();
-      console.error('fetchBankDetails error response:', errorData);
-      throw new Error(errorData.message || 'Failed to fetch bank details');
-    }
-
-    const data = await res.json();
-
-
-    if (Array.isArray(data)) {
-
-      return data;
-    } else {
-
-      return data; 
-    }
+    return await safeJson(res, url);
   } catch (error) {
     console.error('Fetch BankDetails API error:', error);
     throw error;
@@ -148,25 +110,20 @@ export const fetchBankDetails = async (token) => {
 };
 
 export const addBankDetails = async (token, bankDetails) => {
-    try {
-      const res = await fetch(`${BASE_URL}/banks`, {
-        method: 'POST',  
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(bankDetails),
-      });
-  
-      if (!res.ok) {
-        const errorData = await res.json();
-        throw new Error(errorData.message || 'Failed to update bank details');
-      }
-  
-      return await res.json();
-    } catch (error) {
-      console.error('Update BankDetails API error:', error);
-      throw error;
-    }
-  };
-  
+  try {
+    const url = `${BASE_URL}/banks`;
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(bankDetails),
+    });
+
+    return await safeJson(res, url);
+  } catch (error) {
+    console.error('Update BankDetails API error:', error);
+    throw error;
+  }
+};

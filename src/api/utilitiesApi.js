@@ -1,15 +1,11 @@
-// src/api/utilitiesApi.js
+import { BASE_URL, safeJson } from './urls';
+
 export const fetchAadharPanLink = async (token) => {
-    const response = await fetch('/api/utilities/aadhar-pan-link', {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    });
-  
-    if (!response.ok) {
-      throw new Error('Failed to fetch Aadhar/PAN link data');
+  const url = `${BASE_URL}/utilities/aadhar-pan-link`;
+  const response = await fetch(url, {
+    headers: {
+      Authorization: `Bearer ${token}`
     }
-  
-    return await response.json();
-  };
-  
+  });
+  return await safeJson(response, url);
+};

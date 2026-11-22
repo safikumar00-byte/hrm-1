@@ -1,4 +1,4 @@
-import { BASE_URL } from './urls';
+import { BASE_URL, safeJson } from './urls';
 
 export const createDeclaration = async (formData, token) => {
   try {
@@ -10,12 +10,7 @@ export const createDeclaration = async (formData, token) => {
       body: formData
     });
 
-    if (!res.ok) {
-      const errorData = await res.json();
-      throw new Error(errorData.message || 'Failed to create declaration');
-    }
-
-    return await res.json();
+    return await safeJson(res, typeof url !== "undefined" ? url : res.url);
   } catch (err) {
     console.error('Create Declaration Error:', err);
     throw err;
@@ -33,9 +28,7 @@ export const getMyDeclarations = async (token) => {
       }
     });
 
-    if (!res.ok) throw new Error('Failed to fetch declarations');
-
-    return await res.json();
+    return await safeJson(res, typeof url !== "undefined" ? url : res.url);
   } catch (err) {
     console.error('Fetch My Declarations Error:', err);
     throw err;
@@ -53,9 +46,7 @@ export const getAllDeclarations = async (token) => {
       }
     });
 
-    if (!res.ok) throw new Error('Failed to fetch all declarations');
-
-    return await res.json();
+    return await safeJson(res, typeof url !== "undefined" ? url : res.url);
   } catch (err) {
     console.error('Fetch All Declarations Error:', err);
     throw err;
@@ -73,9 +64,7 @@ export const getDeclarationById = async (id, token) => {
       }
     });
 
-    if (!res.ok) throw new Error('Failed to fetch declaration');
-
-    return await res.json();
+    return await safeJson(res, typeof url !== "undefined" ? url : res.url);
   } catch (err) {
     console.error('Get Declaration By ID Error:', err);
     throw err;
@@ -93,12 +82,7 @@ export const updateDeclaration = async (id, formData, token) => {
       body: formData
     });
 
-    if (!res.ok) {
-      const errorData = await res.json();
-      throw new Error(errorData.message || 'Failed to update declaration');
-    }
-
-    return await res.json();
+    return await safeJson(res, typeof url !== "undefined" ? url : res.url);
   } catch (err) {
     console.error('Update Declaration Error:', err);
     throw err;
@@ -115,9 +99,7 @@ export const deleteDeclaration = async (id, token) => {
       }
     });
 
-    if (!res.ok) throw new Error('Failed to delete declaration');
-
-    return await res.json();
+    return await safeJson(res, typeof url !== "undefined" ? url : res.url);
   } catch (err) {
     console.error('Delete Declaration Error:', err);
     throw err;
@@ -135,12 +117,7 @@ export const approveDeclaration = async (id, approvalData, token) => {
       body: JSON.stringify(approvalData)
     });
 
-    if (!res.ok) {
-      const errorData = await res.json();
-      throw new Error(errorData.message || 'Failed to approve declaration');
-    }
-
-    return await res.json();
+    return await safeJson(res, typeof url !== "undefined" ? url : res.url);
   } catch (err) {
     console.error('Approve Declaration Error:', err);
     throw err;

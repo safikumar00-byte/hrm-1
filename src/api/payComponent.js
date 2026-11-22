@@ -1,4 +1,4 @@
-import { BASE_URL } from './urls';
+import { BASE_URL, safeJson } from './urls';
 
 const headers = (token) => ({
   'Content-Type': 'application/json',
@@ -13,12 +13,7 @@ export const fetchPayComponents = async (token) => {
       headers: headers(token)
     });
 
-    if (!res.ok) {
-      const errorData = await res.json();
-      throw new Error(errorData.message || 'Failed to fetch components');
-    }
-
-    return await res.json();
+    return await safeJson(res, typeof url !== "undefined" ? url : res.url);
   } catch (error) {
     console.error('Fetch Pay Components Error:', error);
     throw error;
@@ -34,12 +29,7 @@ export const createPayComponent = async (componentData, token) => {
       body: JSON.stringify(componentData)
     });
 
-    if (!res.ok) {
-      const errorData = await res.json();
-      throw new Error(errorData.message || 'Failed to create component');
-    }
-
-    return await res.json();
+    return await safeJson(res, typeof url !== "undefined" ? url : res.url);
   } catch (error) {
     console.error('Create Pay Component Error:', error);
     throw error;
@@ -55,12 +45,7 @@ export const updatePayComponent = async (id, updatedData, token) => {
       body: JSON.stringify(updatedData)
     });
 
-    if (!res.ok) {
-      const errorData = await res.json();
-      throw new Error(errorData.message || 'Failed to update component');
-    }
-
-    return await res.json();
+    return await safeJson(res, typeof url !== "undefined" ? url : res.url);
   } catch (error) {
     console.error('Update Pay Component Error:', error);
     throw error;
@@ -74,12 +59,7 @@ export const deletePayComponent = async (id, token) => {
       headers: headers(token)
     });
 
-    if (!res.ok) {
-      const errorData = await res.json();
-      throw new Error(errorData.message || 'Failed to delete component');
-    }
-
-    return await res.json();
+    return await safeJson(res, typeof url !== "undefined" ? url : res.url);
   } catch (error) {
     console.error('Delete Pay Component Error:', error);
     throw error;

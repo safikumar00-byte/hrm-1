@@ -1,11 +1,9 @@
-
-import { BASE_URL } from './urls';
+import { BASE_URL, safeJson } from './urls';
 
 export const submitTimeSheetAPI = async (payload, token) => {
   try {
-
-
-    const res = await fetch(`${BASE_URL}/timesheets`, {
+    const url = `${BASE_URL}/timesheets`;
+    const res = await fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -14,15 +12,7 @@ export const submitTimeSheetAPI = async (payload, token) => {
       body: JSON.stringify(payload),
     });
 
-    if (!res.ok) {
-      const errorData = await res.json();
-      console.error('TimeSheet API Error Response:', errorData);
-      throw new Error(errorData.message || 'Time sheet submission failed');
-    }
-
-    const result = await res.json();
-
-    return result;
+    return await safeJson(res, url);
   } catch (error) {
     console.error('Submit Time Sheet API Error:', error);
     throw error;
@@ -31,20 +21,15 @@ export const submitTimeSheetAPI = async (payload, token) => {
 
 export const fetchMyTimeSheetsAPI = async (token) => {
   try {
-    const res = await fetch(`${BASE_URL}/timesheets/my`, {
+    const url = `${BASE_URL}/timesheets/my`;
+    const res = await fetch(url, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
 
-    if (!res.ok) {
-      const errorData = await res.json();
-      throw new Error(errorData.message || 'Fetching time sheets failed');
-    }
-
-    const result = await res.json();
-    return result;
+    return await safeJson(res, url);
   } catch (error) {
     console.error('Fetch Time Sheets API Error:', error);
     throw error;
@@ -53,7 +38,8 @@ export const fetchMyTimeSheetsAPI = async (token) => {
 
 export const fetchAllLeaveRequests = async (token) => {
   try {
-    const res = await fetch(`${BASE_URL}/leaves`, {
+    const url = `${BASE_URL}/leaves`;
+    const res = await fetch(url, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -61,12 +47,7 @@ export const fetchAllLeaveRequests = async (token) => {
       },
     });
 
-    if (!res.ok) {
-      const errorData = await res.json();
-      throw new Error(errorData.message || 'Failed to fetch leave requests');
-    }
-
-    return await res.json(); 
+    return await safeJson(res, url);
   } catch (error) {
     console.error('Fetch All Leave Requests API error:', error);
     throw error;
@@ -75,7 +56,8 @@ export const fetchAllLeaveRequests = async (token) => {
 
 export const fetchTeamTimeSheetsAPI = async (token) => {
   try {
-    const res = await fetch(`${BASE_URL}/timesheets/team`, {
+    const url = `${BASE_URL}/timesheets/team`;
+    const res = await fetch(url, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -83,13 +65,7 @@ export const fetchTeamTimeSheetsAPI = async (token) => {
       },
     });
 
-    if (!res.ok) {
-      const errorData = await res.json();
-      throw new Error(errorData.message || 'Fetching team time sheets failed');
-    }
-
-    const result = await res.json();
-    return result;
+    return await safeJson(res, url);
   } catch (error) {
     console.error('Fetch Team Time Sheets API Error:', error);
     throw error;
@@ -98,7 +74,8 @@ export const fetchTeamTimeSheetsAPI = async (token) => {
 
 export const updateTimesheetStatusAPI = async (id, { status, reason }, token) => {
   try {
-    const res = await fetch(`${BASE_URL}/timesheets/${id}/approve`, {
+    const url = `${BASE_URL}/timesheets/${id}/approve`;
+    const res = await fetch(url, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -107,13 +84,7 @@ export const updateTimesheetStatusAPI = async (id, { status, reason }, token) =>
       body: JSON.stringify({ status, reason }),
     });
 
-    if (!res.ok) {
-      const errorData = await res.json();
-      console.error('Update Timesheet Status Error Response:', errorData);
-      throw new Error(errorData.message || 'Updating timesheet status failed');
-    }
-
-    return await res.json();
+    return await safeJson(res, url);
   } catch (error) {
     console.error('Update Timesheet Status API Error:', error);
     throw error;
@@ -122,7 +93,8 @@ export const updateTimesheetStatusAPI = async (id, { status, reason }, token) =>
 
 export const fetchAllTimeSheetsAPI = async (token) => {
   try {
-    const res = await fetch(`${BASE_URL}/timesheets`, {
+    const url = `${BASE_URL}/timesheets`;
+    const res = await fetch(url, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -130,13 +102,7 @@ export const fetchAllTimeSheetsAPI = async (token) => {
       },
     });
 
-    if (!res.ok) {
-      const errorData = await res.json();
-      throw new Error(errorData.message || 'Fetching all time sheets failed');
-    }
-
-    const result = await res.json();
-    return result;
+    return await safeJson(res, url);
   } catch (error) {
     console.error('Fetch All Time Sheets API Error:', error);
     throw error;

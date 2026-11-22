@@ -1,36 +1,31 @@
-
-import { BASE_URL } from './urls';
+import { BASE_URL, safeJson } from './urls';
 
 export const loginUser = async (email, password) => {
-    try {
-      const res = await fetch(`${BASE_URL}/auth/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
-  
-      if (!res.ok) {
-        const errorData = await res.json();
-        throw new Error(errorData.message || 'Login failed');
-      }
-  
-      const data = await res.json(); 
-  
+  try {
+    const url = `${BASE_URL}/auth/login`;
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password }),
+    });
+
+    const data = await safeJson(res, url);
+    if (data) {
       localStorage.setItem('user', JSON.stringify(data));
-  
-      return data;
-    } catch (error) {
-      console.error('Login API error:', error);
-      throw error;
     }
-  };
-  
+    return data;
+  } catch (error) {
+    console.error('Login API error:', error);
+    throw error;
+  }
+};
 
 export const fetchUsers = async (token) => {
   try {
-    const res = await fetch(`${BASE_URL}/users`, {
+    const url = `${BASE_URL}/users`;
+    const res = await fetch(url, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -38,21 +33,16 @@ export const fetchUsers = async (token) => {
       },
     });
 
-    if (!res.ok) {
-      const errorData = await res.json();
-      throw new Error(errorData.message || 'Failed to fetch users');
-    }
-
-    return await res.json();
+    return await safeJson(res, url);
   } catch (error) {
     console.error('Fetch Users API error:', error);
     throw error;
   }
 };
 
-
 export const applyLeave = async (token, leaveData) => {
   try {
+    const url = `${BASE_URL}/leaves`;
     const formData = new FormData();
     for (const key in leaveData) {
       const value = leaveData[key];
@@ -61,7 +51,7 @@ export const applyLeave = async (token, leaveData) => {
       }
     }
 
-    const res = await fetch(`${BASE_URL}/leaves`, {
+    const res = await fetch(url, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${token}`,
@@ -69,47 +59,17 @@ export const applyLeave = async (token, leaveData) => {
       body: formData,
     });
 
-    if (!res.ok) {
-      const errorData = await res.json();
-      throw new Error(errorData.message || 'Failed to apply for leave');
-    }
-
-    return await res.json();
+    return await safeJson(res, url);
   } catch (error) {
     console.error('Apply Leave API error:', error);
     throw error;
   }
 };
 
-
-
-  
-  export const fetchProfile = async (token) => {
-    try {
-      const res = await fetch(`${BASE_URL}/employee`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-      });
-  
-      if (!res.ok) {
-        const errorData = await res.json();
-        throw new Error(errorData.message || 'Failed to fetch profile');
-      }
-  
-      return await res.json();
-    } catch (error) {
-      console.error('Fetch Profile API error:', error);
-      throw error;
-    }
-  };
-
-
-export const fetchAvailableLeaves = async (token) => {
+export const fetchProfile = async (token) => {
   try {
-    const res = await fetch(`${BASE_URL}/leaves/my`, {
+    const url = `${BASE_URL}/employee`;
+    const res = await fetch(url, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -117,70 +77,63 @@ export const fetchAvailableLeaves = async (token) => {
       },
     });
 
-    const contentType = res.headers.get("content-type");
-  
+    return await safeJson(res, url);
+  } catch (error) {
+    console.error('Fetch Profile API error:', error);
+    throw error;
+  }
+};
 
-    if (!res.ok) {
-      if (contentType && contentType.includes("application/json")) {
-        const errorData = await res.json();
-        throw new Error(errorData.message || 'Failed to fetch leave data');
-      } else {
-        const text = await res.text();
-        console.error('Non-JSON error response:', text);
-        throw new Error(`Server error: ${res.status}`);
-      }
-    }
+export const fetchAvailableLeaves = async (token) => {
+  try {
+    const url = `${BASE_URL}/leaves/my`;
+    const res = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
-    const data = await res.json();
-
-    return data;
+    return await safeJson(res, url);
   } catch (error) {
     console.error('Fetch Available Leaves API error:', error);
     throw error;
   }
 };
 
+export const fetchAttendanceData = async (token) => {
+  try {
+    const url = `${BASE_URL}/attendance`;
+    const res = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
-  export const fetchAttendanceData = async (token) => {
-    try {
-      const res = await fetch(`${BASE_URL}/attendance`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-      });
-  
-      if (!res.ok) {
-        const errorData = await res.json();
-        throw new Error(errorData.message || 'Failed to fetch attendance data');
-      }
-  
-      return await res.json();
-    } catch (error) {
-      console.error('Fetch Attendance Data API error:', error);
-      throw error;
-    }
-  };
+    return await safeJson(res, url);
+  } catch (error) {
+    console.error('Fetch Attendance Data API error:', error);
+    throw error;
+  }
+};
 
-  export const getTeamAttendance = async (token) => {
-    try {
-      const res = await fetch(`${BASE_URL}/attendance/team`,{
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-      });
-  
-      if (!res.ok) {
-        const errorData = await res.json();
-        throw new Error(errorData.message || 'Failed to fetch attendance data');
-      }
-  
-      return await res.json();
-    } catch (error) {
-      console.error('Fetch Attendance Data API error:', error);
-      throw error;
-    }
-  };
+export const getTeamAttendance = async (token) => {
+  try {
+    const url = `${BASE_URL}/attendance/team`;
+    const res = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return await safeJson(res, url);
+  } catch (error) {
+    console.error('Fetch Attendance Data API error:', error);
+    throw error;
+  }
+};

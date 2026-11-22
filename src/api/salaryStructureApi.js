@@ -1,30 +1,8 @@
-import { BASE_URL } from './urls';
+import { BASE_URL, safeJson } from './urls';
 
 const handleResponse = async (res, defaultMessage) => {
-  if (res.ok) {
-    return res.json();
-  }
-
-  let errorMessage = defaultMessage;
-  try {
-    const errorData = await res.json();
-    errorMessage = errorData.message || defaultMessage;
-  } catch {
-    const text = await res.text();
-    if (text) {
-      errorMessage = text;
-    }
-  }
-
-  console.error('API error response:', {
-    status: res.status,
-    statusText: res.statusText,
-    errorMessage,
-  });
-
-  throw new Error(errorMessage);
+  return await safeJson(res, res.url);
 };
-
 
 export const fetchAllSalaryStructures = async (token) => {
   try {
@@ -43,7 +21,6 @@ export const fetchAllSalaryStructures = async (token) => {
   }
 };
 
-
 export const createSalaryStructure = async (token, data) => {
   try {
     const res = await fetch(`${BASE_URL}/salary`, {
@@ -55,36 +32,12 @@ export const createSalaryStructure = async (token, data) => {
       body: JSON.stringify(data),
     });
 
-   
-    if (!res.ok) {
-      let errorBody;
-      try {
-        errorBody = await res.json();
-      } catch (jsonErr) {
-        errorBody = { message: 'Failed to parse error response' };
-      }
-
-      console.error('API error response:', {
-        status: res.status,
-        statusText: res.statusText,
-        errorBody
-      });
-
-      throw new Error(
-        errorBody?.error ||
-        errorBody?.message ||
-        'Failed to create salary structure'
-      );
-    }
-
-    return await res.json();
-
+    return await handleResponse(res, 'Failed to create salary structure');
   } catch (error) {
     console.error('Create Salary Structure error:', error);
     throw error;
   }
 };
-
 
 export const updateSalaryStructure = async (token, id, data) => {
   try {
@@ -104,7 +57,6 @@ export const updateSalaryStructure = async (token, id, data) => {
   }
 };
 
-
 export const deleteSalaryStructure = async (token, id) => {
   try {
     const res = await fetch(`${BASE_URL}/salary/${id}`, {
@@ -121,7 +73,6 @@ export const deleteSalaryStructure = async (token, id) => {
     throw error;
   }
 };
-
 
 export const fetchSalaryStructureByEmployee = async (token, employeeId) => {
   try {

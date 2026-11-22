@@ -1,21 +1,16 @@
-import { BASE_URL } from './urls';
+import { BASE_URL, safeJson } from './urls';
 
 export const getAllEmployees = async (token) => {
   try {
-    const res = await fetch(`${BASE_URL}/employee/all`, {
+    const url = `${BASE_URL}/employee/all`;
+    const res = await fetch(url, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
     });
-
-    if (!res.ok) {
-      const errorData = await res.json();
-      throw new Error(errorData.message || 'Failed to fetch employees');
-    }
-
-    return await res.json();
+    return await safeJson(res, url);
   } catch (error) {
     console.error('Fetch Employees API error:', error);
     throw error;
@@ -24,7 +19,8 @@ export const getAllEmployees = async (token) => {
 
 export const updateEmployee = async (token, employeeId, updatedData) => {
   try {
-    const res = await fetch(`${BASE_URL}/employee/${employeeId}`, {
+    const url = `${BASE_URL}/employee/${employeeId}`;
+    const res = await fetch(url, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -32,13 +28,7 @@ export const updateEmployee = async (token, employeeId, updatedData) => {
       },
       body: JSON.stringify(updatedData),
     });
-
-    if (!res.ok) {
-      const errorData = await res.json();
-      throw new Error(errorData.message || 'Failed to update employee');
-    }
-
-    return await res.json();
+    return await safeJson(res, url);
   } catch (error) {
     console.error('Update Employee API error:', error);
     throw error;
@@ -47,20 +37,15 @@ export const updateEmployee = async (token, employeeId, updatedData) => {
 
 export const getUpcomingBirthdays = async (token) => {
   try {
-    const res = await fetch(`${BASE_URL}/feature/dob`, {
+    const url = `${BASE_URL}/feature/dob`;
+    const res = await fetch(url, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
     });
-
-    if (!res.ok) {
-      const errorData = await res.json();
-      throw new Error(errorData.message || 'Failed to fetch birthdays');
-    }
-
-    return await res.json();
+    return await safeJson(res, url);
   } catch (error) {
     console.error('Fetch Birthdays API error:', error);
     throw error;
@@ -73,20 +58,15 @@ export const getFilteredEmployees = async (token, roles = [], search = '') => {
     if (roles.length > 0) query.append('role', roles.join(','));
     if (search) query.append('search', search);
 
-    const res = await fetch(`${BASE_URL}/employee/filtered?${query.toString()}`, {
+    const url = `${BASE_URL}/employee/filtered?${query.toString()}`;
+    const res = await fetch(url, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
     });
-
-    if (!res.ok) {
-      const errorData = await res.json();
-      throw new Error(errorData.message || 'Failed to fetch filtered employees');
-    }
-
-    return await res.json();
+    return await safeJson(res, url);
   } catch (error) {
     console.error('Fetch Filtered Employees API error:', error);
     throw error;

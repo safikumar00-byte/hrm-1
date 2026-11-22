@@ -1,7 +1,7 @@
 // mockApiPlugin.js
 // Vite plugin that serves a comprehensive mock backend for CVM HRMS
 
-export function mockApiPlugin() {
+// Mock Data Definitions
   const mockJwt =
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.' +
     Buffer.from(
@@ -243,15 +243,14 @@ export function mockApiPlugin() {
     },
   ];
 
-  return {
-    name: 'cvm-mock-api-plugin',
-    configureServer(server) {
-      server.middlewares.use((req, res, next) => {
-        const url = req.url.split('?')[0];
+export function handleMockApiRequest(req, res, next) {
+    let rawUrl = (req.url || '').split('?')[0];
+    if (!rawUrl.startsWith('/api')) {
+      rawUrl = '/api' + (rawUrl.startsWith('/') ? rawUrl : '/' + rawUrl);
+    }
+    const url = rawUrl;
 
-        if (!url.startsWith('/api')) {
-          return next();
-        }
+    // /api prefix is normalized
 
         // Set common response headers
         res.setHeader('Content-Type', 'application/json');
@@ -287,7 +286,7 @@ export function mockApiPlugin() {
         }
 
         // 4. Clock & Sessions
-        if (url.includes('/clock/today-sessions')) {
+        if (url.includes('/clock/today-sessions') || url.includes('/clock/status')) {
           return sendJson({
             sessions: [
               { clockIn: new Date(Date.now() - 3600000 * 4).toISOString(), clockOut: new Date(Date.now() - 3600000 * 2).toISOString() },
@@ -383,7 +382,7 @@ export function mockApiPlugin() {
         }
 
         // 10. HR Requests
-        if (url.includes('/hr/requests')) {
+        if (url.includes('/hr/requests') || url.includes('/hr-requests')) {
           if (req.method === 'POST') return sendJson({ success: true, message: 'Request created' });
           return sendJson(hrRequests);
         }
@@ -557,7 +556,19 @@ export function mockApiPlugin() {
           message: 'Mock API Response',
           data: [],
         });
-      });
+  };
+
+export function mockApiPlugin() {
+  return {
+    name: 'cvm-mock-api-plugin',
+    configureServer(server) {
+      server.middlewares.use(handleMockApiRequest);
+    },
+    configurePreviewServer(server) {
+      server.middlewares.use(handleMockApiRequest);
     },
   };
 }
+
+export const handleMockApi = handleMockApiRequest;
+export default mockApiPlugin;

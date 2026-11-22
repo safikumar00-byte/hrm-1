@@ -1,4 +1,4 @@
-import { BASE_URL } from './urls';
+import { BASE_URL, safeJson } from './urls';
 
 
 export const debounce = (func, delay) => {
@@ -21,11 +21,7 @@ export const fetchEmployeesByNameOrId = async (query, token) => {
       }
     );
   
-    if (!res.ok) {
-      throw new Error('Failed to fetch employees');
-    }
-  
-    return await res.json();
+    return await safeJson(res, `${BASE_URL}/employee/filtered`);
   };
   
 
@@ -40,12 +36,8 @@ export const getEmployeeById = async (employeeId) => {
 
   const res = await fetch(`${BASE_URL}/employees/${encodeURIComponent(employeeId.trim())}`);
 
-  if (!res.ok) {
-
-    return null;
-  }
-
-  const emp = await res.json();
+  const emp = await safeJson(res, `${BASE_URL}/employees/${employeeId}`);
+  if (!emp) return null;
 
   return {
     employeeId: emp.employeeId,

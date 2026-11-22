@@ -1,4 +1,4 @@
-import { BASE_URL } from './urls';
+import { BASE_URL, safeJson } from './urls';
 import { getToken } from '../utils/auth';
 
 export const fetchSelfPayroll = async (month, year) => {
@@ -12,12 +12,7 @@ export const fetchSelfPayroll = async (month, year) => {
       },
     });
 
-    if (!res.ok) {
-      const errorData = await res.json();
-      throw new Error(errorData.message || 'Failed to fetch payroll');
-    }
-
-    return await res.json();
+    return await safeJson(res, typeof url !== "undefined" ? url : res.url);
   } catch (error) {
     console.error('Fetch Self Payroll API error:', error);
     throw error;

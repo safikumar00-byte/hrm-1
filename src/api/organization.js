@@ -1,4 +1,4 @@
-import { BASE_URL } from './urls';
+import { BASE_URL, safeJson } from './urls';
 
 // GET all organizations
 export const fetchOrganizations = async (token) => {
@@ -11,12 +11,7 @@ export const fetchOrganizations = async (token) => {
       },
     });
 
-    if (!res.ok) {
-      const errorData = await res.json();
-      throw new Error(errorData.message || 'Failed to fetch organizations');
-    }
-
-    return await res.json();
+    return await safeJson(res, typeof url !== "undefined" ? url : res.url);
   } catch (error) {
     console.error('Fetch Organizations API error:', error);
     throw error;
@@ -34,12 +29,7 @@ export const fetchActiveOrganizations = async (token) => {
       },
     });
 
-    if (!res.ok) {
-      const errorData = await res.json();
-      throw new Error(errorData.message || 'Failed to fetch active organizations');
-    }
-
-    return await res.json();
+    return await safeJson(res, typeof url !== "undefined" ? url : res.url);
   } catch (error) {
     console.error('Fetch Active Organizations API error:', error);
     throw error;
@@ -57,12 +47,7 @@ export const fetchOrganizationById = async (id, token) => {
       },
     });
 
-    if (!res.ok) {
-      const errorData = await res.json();
-      throw new Error(errorData.message || 'Failed to fetch organization');
-    }
-
-    return await res.json();
+    return await safeJson(res, typeof url !== "undefined" ? url : res.url);
   } catch (error) {
     console.error('Fetch Organization By ID API error:', error);
     throw error;
@@ -81,12 +66,7 @@ export const createOrganization = async (data, token) => {
       body: JSON.stringify(data),
     });
 
-    if (!res.ok) {
-      const errorData = await res.json();
-      throw new Error(errorData.message || 'Failed to create organization');
-    }
-
-    return await res.json();
+    return await safeJson(res, typeof url !== "undefined" ? url : res.url);
   } catch (error) {
     console.error('Create Organization API error:', error);
     throw error;
@@ -105,12 +85,7 @@ export const updateOrganization = async (id, data, token) => {
       body: JSON.stringify(data),
     });
 
-    if (!res.ok) {
-      const errorData = await res.json();
-      throw new Error(errorData.message || 'Failed to update organization');
-    }
-
-    return await res.json();
+    return await safeJson(res, typeof url !== "undefined" ? url : res.url);
   } catch (error) {
     console.error('Update Organization API error:', error);
     throw error;
@@ -127,12 +102,7 @@ export const deleteOrganization = async (id, token) => {
       },
     });
 
-    if (!res.ok) {
-      const errorData = await res.json();
-      throw new Error(errorData.message || 'Failed to delete organization');
-    }
-
-    return await res.json();
+    return await safeJson(res, typeof url !== "undefined" ? url : res.url);
   } catch (error) {
     console.error('Delete Organization API error:', error);
     throw error;

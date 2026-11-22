@@ -1,4 +1,4 @@
-import { BASE_URL } from './urls';
+import { BASE_URL, safeJson } from './urls';
 
 
 export const addTeamMember = async (token, { teamName, employeeId }) => {
@@ -12,12 +12,7 @@ export const addTeamMember = async (token, { teamName, employeeId }) => {
       body: JSON.stringify({ teamName, employeeId }),
     });
 
-    if (!res.ok) {
-      const errorData = await res.json();
-      throw new Error(errorData.message || 'Failed to add team member');
-    }
-
-    return await res.json();
+    return await safeJson(res, typeof url !== "undefined" ? url : res.url);
   } catch (error) {
     console.error('Add Team Member API error:', error);
     throw error;
@@ -32,12 +27,7 @@ export const getTeamMembers = async (token, teamName) => {
       },
     });
 
-    if (!res.ok) {
-      const errorData = await res.json();
-      throw new Error(errorData.message || 'Failed to get team members');
-    }
-
-    return await res.json();
+    return await safeJson(res, typeof url !== "undefined" ? url : res.url);
   } catch (error) {
     console.error('Get Team Members API error:', error);
     throw error;
@@ -56,12 +46,7 @@ export const removeTeamMember = async (token, { teamName, employeeId }) => {
       body: JSON.stringify({ teamName, employeeId }),
     });
 
-    if (!res.ok) {
-      const errorData = await res.json();
-      throw new Error(errorData.message || 'Failed to remove team member');
-    }
-
-    return await res.json();
+    return await safeJson(res, typeof url !== "undefined" ? url : res.url);
   } catch (error) {
     console.error('Remove Team Member API error:', error);
     throw error;
@@ -76,12 +61,7 @@ export const getMyTeam = async (token) => {
       },
     });
 
-    if (!res.ok) {
-      const errorData = await res.json();
-      throw new Error(errorData.message || 'Failed to get your team');
-    }
-
-    return await res.json();
+    return await safeJson(res, typeof url !== "undefined" ? url : res.url);
   } catch (error) {
     console.error('Get My Team API error:', error);
     throw error;
@@ -96,12 +76,7 @@ export const getAllTeams = async (token) => {
       },
     });
 
-    if (!res.ok) {
-      const errorData = await res.json();
-      throw new Error(errorData.message || 'Failed to get all teams');
-    }
-
-    return await res.json();
+    return await safeJson(res, typeof url !== "undefined" ? url : res.url);
   } catch (error) {
     console.error('Get All Teams API error:', error);
     throw error;
@@ -120,12 +95,7 @@ export const createTeam = async (token, { teamName:name}) => {
       body: JSON.stringify({ teamName:name }),
     });
 
-    if (!res.ok) {
-      const errorData = await res.json();
-      throw new Error(errorData.message || 'Failed to create team');
-    }
-
-    return await res.json();
+    return await safeJson(res, typeof url !== "undefined" ? url : res.url);
   } catch (error) {
     console.error('Create Team API error:', error);
     throw error;
@@ -143,12 +113,7 @@ export const deleteTeam = async (token, { teamName }) => {
       body: JSON.stringify({ teamName }),
     });
 
-    if (!res.ok) {
-      const errorData = await res.json();
-      throw new Error(errorData.message || 'Failed to delete team');
-    }
-
-    return await res.json();
+    return await safeJson(res, typeof url !== "undefined" ? url : res.url);
   } catch (error) {
     console.error('Delete Team API error:', error);
     throw error;

@@ -1,12 +1,7 @@
-import { BASE_URL } from './urls';
+import { BASE_URL, safeJson } from './urls';
 
-
-const handleResponse = async (res) => {
-  if (!res.ok) {
-    const errorData = await res.json();
-    throw new Error(errorData.message || 'Request failed');
-  }
-  return await res.json();
+const handleResponse = async (res, url = '') => {
+  return safeJson(res, url || res.url);
 };
 
 export const fetchAnnouncements = async (token) => {
@@ -54,10 +49,7 @@ export const updateAnnouncement = async (token, id, title, description) => {
     body: JSON.stringify(bodyData),
   });
 
-  if (!res.ok) {
-    throw new Error('Update failed');
-  }
-  return res.json();
+  return handleResponse(res);
 };
 
 
@@ -95,18 +87,7 @@ export const updateEvent = async (token, id, title, date, time) => {
     body: JSON.stringify({ title, eventDate: date, eventTime: time }),
   });
 
-  if (!res.ok) {
-    let errorMessage = "Failed to update event";
-    try {
-      const contentType = res.headers.get("content-type");
-      if (contentType && contentType.includes("application/json")) {
-        const err = await res.json();
-        errorMessage = err.message || errorMessage;
-      }
-    } catch (_) {}
-
-    throw new Error(errorMessage);
-  }
+  return handleResponse(res);
 };
 
 
