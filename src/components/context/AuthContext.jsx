@@ -12,11 +12,9 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const urlToken = params.get('token');
-    const urlRole = params.get('role');
-
-    let currentToken = urlToken || localStorage.getItem('token');
+    // Only read token and role from localStorage.
+    // Query parameter injection (?token=...&role=...) is disabled for security compliance.
+    let currentToken = localStorage.getItem('token');
 
     const currentPath = window.location.pathname;
 
@@ -30,31 +28,26 @@ export const AuthProvider = ({ children }) => {
       return;
     }
 
-    if (urlToken) {
-      localStorage.setItem('token', urlToken);
-      setToken(urlToken);
-    } else {
-      setToken(currentToken);
-    }
+    setToken(currentToken);
 
-    if (urlRole) {
-      const roleArray = [urlRole];
-      localStorage.setItem('role', JSON.stringify(roleArray));
-      setRole(roleArray);
-    } else {
-      const savedRole = localStorage.getItem('role');
-      if (savedRole) {
-        try {
-          const parsedRole = JSON.parse(savedRole);
-          setRole(Array.isArray(parsedRole) ? parsedRole : []);
-        } catch {
-          setRole([]);
-        }
+    const savedRole = localStorage.getItem('role');
+    if (savedRole) {
+      try {
+        const parsedRole = JSON.parse(savedRole);
+        setRole(Array.isArray(parsedRole) ? parsedRole : []);
+      } catch {
+        setRole([]);
       }
     }
 
     const storedUser = localStorage.getItem('user');
-    if (storedUser) setUser(JSON.parse(storedUser));
+    if (storedUser) {
+      try {
+        setUser(JSON.parse(storedUser));
+      } catch {
+        setUser(null);
+      }
+    }
 
     const storedRoles = localStorage.getItem('role');
     if (storedRoles) {
@@ -63,10 +56,6 @@ export const AuthProvider = ({ children }) => {
       } catch {
         setRoles([]);
       }
-    }
-
-    if (urlToken || urlRole) {
-      window.history.replaceState({}, document.title, window.location.pathname);
     }
 
     setLoading(false);

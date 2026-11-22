@@ -1,2 +1,2 @@
-
-export const BASE_URL = "https://white-rock-08b79f000.6.azurestaticapps.net";
+import { BASE_URL as API_BASE_URL } from './urls';
+export const BASE_URL = API_BASE_URL;

@@ -324,7 +324,7 @@ export default function ModernPayroll() {
           return;
         }
       }
-      // Realistic simulation if offline
+      // Standalone Demonstration / Offline Mode Notice
       setTimeout(() => {
         setRunResult({
           month: runMonth,
@@ -335,9 +335,13 @@ export default function ModernPayroll() {
           totalNet: '$567,000.00',
           totalTDS: '$23,100.00',
           totalPF: '$37,800.00',
-          status: 'Processed & Locked',
+          status: 'Simulated (Demo Mode - Not Committed to Ledger)',
+          isSimulated: true,
         });
-        toast.success(`Payroll generated for ${MONTH_NAMES[runMonth - 1]} ${runYear}! 42 employees processed.`);
+        toast.warning(
+          `Demo Mode: Payroll calculation simulated for ${MONTH_NAMES[runMonth - 1]} ${runYear}. Live backend API is unreachable; transaction not committed to corporate general ledger.`,
+          { autoClose: 6000 }
+        );
         setProcessingRun(false);
       }, 900);
     } catch (err) {
@@ -370,6 +374,14 @@ export default function ModernPayroll() {
             <span>Download Payslip PDF</span>
           </Button>
         </div>
+      </div>
+
+      {/* Production Security & Environment Status Banner */}
+      <div className="flex items-center gap-2.5 p-3 rounded-lg bg-amber-500/10 border border-amber-500/25 text-amber-600 dark:text-amber-400 text-xs font-medium">
+        <AlertCircle className="w-4 h-4 shrink-0 text-amber-500" />
+        <span>
+          <strong>Environment Notice:</strong> Standalone Client Mode. Live backend API is not connected. Data presented in this view is simulated demonstration data and must not be used for actual financial disbursements or tax filings.
+        </span>
       </div>
 
       {/* 4 Core Summary Metric KPI Cards */}
